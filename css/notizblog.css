@@ -6,31 +6,52 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	}
+	}	
 	
 /*
  * Eigene Styles
 */
 
 body {
-	background-color:white;
+	background-color: #FAFAFF;
+}
+
+.breadcrumb{
+	background-color: lightgray;
+}
+
+.breadcrumb > .active {
+  color: black;
 }
 
 .input-group {
 	margin-top: 10px;
 }
 
+#header{
+	margin-top: 30px;
+	margin-bottom: 5px;
+	padding: 0px 15px; /* Anpassung an CSS-Style von Breadcrumbs */
+}
+
 #header-left {
 	background-image: linear-gradient(to top, #009ACD 0%, #87CEFA 50%);
-	/*font-family: 'Sansita', sans-serif;*/
+	font-family: 'Sansita', sans-serif;
+	border-radius: 20px 0px 0px 4px; /* Abrundung der linken Ecken in Header */
 }
 
 #header-left h1 {
-	font-size: 50px;
+	font-size: 60px;
 	}
 
 #header-login {
 	background-color: lightgray;
+	border-radius: 0px 20px 4px 0px; /* Abrundung der rechten Ecken im Header */
+}
+
+#menu{
+	border: 1px solid lightgray; 
+	border-radius: 4px;
 }
 
 .no-link a:hover, a:link, a:visited{
