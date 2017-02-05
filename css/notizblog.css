@@ -1,0 +1,39 @@
+/* 
+ * Erweiterung von Bootstrap
+*/
+.row-eq-height {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	}
+	
+/*
+ * Eigene Styles
+*/
+
+body {
+	background-color:white;
+}
+
+.input-group {
+	margin-top: 10px;
+}
+
+#header-left {
+	background-image: linear-gradient(to top, #009ACD 0%, #87CEFA 50%);
+	/*font-family: 'Sansita', sans-serif;*/
+}
+
+#header-left h1 {
+	font-size: 50px;
+	}
+
+#header-login {
+	background-color: lightgray;
+}
+
+.no-link a:hover, a:link, a:visited{
+	color: black;
+	text-decoration: none;
+}
