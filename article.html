@@ -1,0 +1,117 @@
+<html>
+<head>
+	<title>
+		notizblog
+	</title>
+	<meta charset="UTF-8" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/font-awesome.css" rel="stylesheet" />
+	<link href="css/notizblog.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet" />
+  <script src="js/jquery-3.1.1.js"></script>
+  <script src="js/getComments.js"></script>
+</head>
+<body>
+	<div class="container">
+	   <div class="row row-eq-height" id="header">
+       <div class="col-md-9 col-lg-9" id="header-left">
+				<a href="index.html">
+					<h1 class="no-link">notizblog</h1>
+				</a>
+				</div>
+				<div class="col-md-3 col-lg-3" id="header-login">
+					<form>
+						<div class="input-group">
+							<span class="input-group-addon" id="mail-icon">
+								<i class="fa fa-at" aria-hidden="true"></i>
+							</span>
+							<input class="form-control" type="text" placeholder="E-Mail" aria-describedby="mail-icon" />
+						</div>
+						<div class="input-group">
+							<span class="input-group-addon" id="password-icon">
+								<i class="fa fa-key" aria-hidden="true"></i>
+							</span>
+							<input class="form-control" type="password" placeholder="Passwort" aria-describedby="password-icon" />
+							<span class="input-group-btn">
+								<button class="btn btn-info" type="submit">Login</button>
+							</span>
+						</div>
+					</form>
+				</div>
+		</div>
+		<ol class="breadcrumb">
+			<!--<li><a href="">Seite</a></li>-->
+			<li class="active">notizblog</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="nav nav-pills nav-stacked" id="menu">
+					<li role="presentation"><a href="#">Blog schreiben</a></li>
+					<li role="presentation"><a href="#">Arbeit und Studium <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Kultur <span class="badge">2</span></a></li>
+					<li role="presentation" class="active"><a href="#">Lifestyle <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Politik <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Technik <span class="badge">2</span></a></li>
+				</ul>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-body">
+            <img src="img/moon-header.jpg" class="img-responsive"/>
+						<h2>Vollmond</h2>
+						<p>Dies ist ein Artikel über unseren schönen Mond.</p>
+            <hr/>
+            <a id="loadComments">Kommentare laden</a>
+            <ul class="media-list">
+              <li class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Überschrift</h4>
+                  <p>Dies ist ein Kommentar.<br/>Test</p>
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">Re: Überschrift</h4>
+                      <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch Antworten möglich sind.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <li class="media">
+                <div class="media-left">
+                  <a href="#">
+                    <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
+                  </a>
+                </div>
+                <div class="media-body">
+                  <h4 class="media-heading">Überschrift</h4>
+                  <p>Dies ist ein Kommentar.<br/>Test</p>
+                  <div class="media">
+                    <div class="media-left">
+                      <a href="#">
+                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
+                      </a>
+                    </div>
+                    <div class="media-body">
+                      <h4 class="media-heading">Re: Überschrift</h4>
+                      <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch Antworten möglich sind.</p>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            </ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
