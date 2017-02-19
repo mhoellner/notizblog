@@ -54,6 +54,11 @@ body {
 	border-radius: 4px;
 }
 
+textarea{
+	min-width: 100%;
+	max-width: 100%;
+}
+
 .no-link a:hover, a:link, a:visited{
 	color: black;
 	text-decoration: none;

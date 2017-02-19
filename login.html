@@ -1,0 +1,112 @@
+<html>
+<head>
+	<title>
+		notizblog
+	</title>
+	<meta charset="UTF-8" />
+	<link href="css/bootstrap.css" rel="stylesheet" />
+	<link href="css/font-awesome.css" rel="stylesheet" />
+	<link href="css/notizblog.css" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet" />
+</head>
+<body>
+	<div class="container">
+		<div class="row row-eq-height" id="header">
+			<div class="col-md-9 col-lg-9" id="header-left">
+				<a href="index.html">
+					<h1 class="no-link">notizblog</h1>
+				</a>
+			</div>
+			<div class="col-md-3 col-lg-3" id="header-login">
+				<form>
+					<div class="input-group">
+						<span class="input-group-addon" id="mail-icon">
+							<i class="fa fa-at" aria-hidden="true"></i>
+						</span>
+						<input class="form-control" type="text" placeholder="E-Mail" aria-describedby="mail-icon" />
+					</div>
+					<div class="input-group">
+						<span class="input-group-addon" id="password-icon">
+							<i class="fa fa-key" aria-hidden="true"></i>
+						</span>
+						<input class="form-control" type="password" placeholder="Passwort" aria-describedby="password-icon" />
+						<span class="input-group-btn">
+							<button class="btn btn-info" type="submit">Login</button>
+						</span>
+					</div>
+				</form>
+			</div>
+		</div>
+		<ol class="breadcrumb">
+			<li><a href="index.html">notizblog</a></li>
+			<li>Blog schreiben</li>
+			<li class="active">Login</li>
+		</ol>
+		<div class="row">
+			<div class="col-md-3">
+				<ul class="nav nav-pills nav-stacked" id="menu">
+					<li role="presentation" class="active"><a href="#">Blog schreiben</a></li>
+					<li role="presentation"><a href="#">Arbeit und Studium <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Kultur <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Lifestyle <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Politik <span class="badge">2</span></a></li>
+					<li role="presentation"><a href="#">Technik <span class="badge">2</span></a></li>
+				</ul>
+			</div>
+			<div class="col-md-9">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<h3>Login</h3>
+								<p>Bitte log dich ein, um einen Blogeintrag zu schreiben.</p>
+								<br/>
+								<form>						
+									<input class="form-control" type="text" placeholder="E-Mail" aria-describedby="mail-icon" />
+									<br/>
+									<input class="form-control" type="password" placeholder="Passwort" aria-describedby="password-icon" />
+									<br/>
+									<center>
+										<button class="btn btn-info" type="submit">
+											<i class="fa fa-sign-in" aria-hidden="true"></i> 
+											Login
+										</button>
+									</center>
+								</form>
+							</div>
+						</div>
+						<br/>
+						<hr>
+						<br/>
+						<div class="row">
+							<div class="col-md-8 col-md-offset-2">
+								<h3>Registrierung</h3>
+								<p>Du bist noch nicht registriert, möchtest aber gerne eigene Blogeinträge verfassen?</p>
+								<p>Dann melde dich jetzt hier an:</p>
+								<br/>
+								<form>
+									<input class="form-control" type="text" placeholder="Name" aria-describedby="mail-icon" />
+									<br/>
+									<input class="form-control" type="text" placeholder="E-Mail" aria-describedby="mail-icon" />
+									<br/>
+									<input class="form-control" type="password" placeholder="Passwort" aria-describedby="password-icon" />
+									<br/>
+									<input class="form-control" type="password" placeholder="Passwort wiederholen" aria-describedby="password-icon" />
+									<br/>
+									<center>
+										<button class="btn btn-info" type="submit">
+											<i class="fa fa-check-square-o" aria-hidden="true"></i> 
+											Registrieren
+										</button>
+									</center>
+								</form>
+								<br/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
