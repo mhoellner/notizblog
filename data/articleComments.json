@@ -1,24 +1,24 @@
 [
   {
-    id = 1,
-    title = "Überschrift",
-    comment = "Das ist mein Kommentar",
-    date = "18.02.2017",
-    commenter = {
-      name = "Milan",
-      image = "img/moon.jpg"
+    "id": 1,
+    "title": "Überschrift",
+    "comment": "Das ist mein Kommentar",
+    "date": "18.02.2017",
+    "commenter": {
+      "name": "Milan",
+      "image": "img/moon.jpg"
     },
-    previousComment = -1
+    "previousComment": -1
   },
   {
-    id = 2,
-    title = "Re: Überschrift",
-    comment = "Das ist mein zweiter Kommentar",
-    date = "18.02.2017",
-    commenter = {
-      name = "Milan",
-      image = "img/moon.jpg"
+    "id": 2,
+    "title": "Re: Überschrift",
+    "comment": "Das ist mein zweiter Kommentar",
+    "date": "18.02.2017",
+    "commenter": {
+      "name": "Milan",
+      "image": "img/moon.jpg"
     },
-    previousComment = 1
+    "previousComment": 1
   }
 ]

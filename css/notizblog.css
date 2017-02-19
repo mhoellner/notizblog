@@ -1,4 +1,4 @@
-/* 
+/*
  * Erweiterung von Bootstrap
 */
 .row-eq-height {
@@ -6,8 +6,8 @@
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
-	}	
-	
+	}
+
 /*
  * Eigene Styles
 */
@@ -16,8 +16,12 @@ body {
 	background-color: #FAFAFF;
 }
 
-.breadcrumb{
+.breadcrumb {
 	background-color: lightgray;
+}
+
+.breadcrumb > li + li::before {
+	color: #000;
 }
 
 .breadcrumb > .active {
@@ -49,17 +53,17 @@ body {
 	border-radius: 0px 20px 4px 0px; /* Abrundung der rechten Ecken im Header */
 }
 
-#menu{
-	border: 1px solid lightgray; 
+#menu {
+	border: 1px solid lightgray;
 	border-radius: 4px;
 }
 
-textarea{
+textarea {
 	min-width: 100%;
 	max-width: 100%;
 }
 
-.no-link a:hover, a:link, a:visited{
+.no-link a:hover, a:link, a:visited {
 	color: black;
 	text-decoration: none;
 }
