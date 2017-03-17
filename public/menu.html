@@ -1,0 +1,10 @@
+<ul ng-controller="navbarCtrl" class="nav nav-pills nav-stacked nb-menu">
+    <li role="presentation"><a href="/login">Login</a></li>
+    <li ng-repeat="category in categories|orderBy:'title'" role="presentation">
+        <a href="{{ category.href }}">
+            {{ category.title }} <span class="badge">{{ category.amount }}</span>
+        </a>
+    </li>
+    <li role="presentation"><a href="/search">Suche</a></li>
+    <li role="presentation"><a href="/impressum">Impressum</a></li>
+</ul>

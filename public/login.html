@@ -1,0 +1,93 @@
+<html ng-app="notizblogApp">
+<head>
+    <title>
+        Login | notizblog
+    </title>
+    <meta charset="UTF-8"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/notizblog.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <nb:header></nb:header>
+    <ol class="breadcrumb">
+        <li><a href="index.html">notizblog</a></li>
+        <li>Blog schreiben</li>
+        <li class="active">Login</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <nb:menu></nb:menu>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h3>Login</h3>
+                            <p>Bitte log dich ein, um einen Blogeintrag zu schreiben.</p>
+                            <br/>
+                            <form>
+                                <input class="form-control" type="text" placeholder="E-Mail"
+                                       aria-describedby="mail-icon"/>
+                                <br/>
+                                <input class="form-control" type="password" placeholder="Passwort"
+                                       aria-describedby="password-icon"/>
+                                <br/>
+                                <center>
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i>
+                                        Login
+                                    </button>
+                                </center>
+                            </form>
+                        </div>
+                    </div>
+                    <br/>
+                    <hr>
+                    <br/>
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                            <h3 id="register">Registrierung</h3>
+                            <p>Du bist noch nicht registriert, möchtest aber gerne eigene Blogeinträge verfassen?</p>
+                            <p>Dann melde dich jetzt hier an:</p>
+                            <br/>
+                            <form>
+                                <input class="form-control" type="text" placeholder="Name"
+                                       aria-describedby="mail-icon"/>
+                                <br/>
+                                <input class="form-control" type="text" placeholder="E-Mail"
+                                       aria-describedby="mail-icon"/>
+                                <br/>
+                                <input class="form-control" type="password" placeholder="Passwort"
+                                       aria-describedby="password-icon"/>
+                                <br/>
+                                <input class="form-control" type="password" placeholder="Passwort wiederholen"
+                                       aria-describedby="password-icon"/>
+                                <br/>
+                                <center>
+                                    <button class="btn btn-info" type="submit">
+                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        Registrieren
+                                    </button>
+                                </center>
+                            </form>
+                            <br/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="js/module.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+
+<script src="js/notizblog.js"></script>
+</body>
+</html>
