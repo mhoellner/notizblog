@@ -17,23 +17,29 @@
     </ol>
     <div class="row">
         <div class="col-md-3 col-lg-3">
-            <ul class="nav nav-pills nav-stacked" id="menu">
-                <li role="presentation"><a href="login.html">Login</a></li>
-                <li role="presentation"><a href="#">Arbeit und Studium <span class="badge">2</span></a></li>
-                <li role="presentation"><a href="#">Kultur <span class="badge">2</span></a></li>
-                <li role="presentation"><a href="#">Lifestyle <span class="badge">2</span></a></li>
-                <li role="presentation"><a href="#">Politik <span class="badge">2</span></a></li>
-                <li role="presentation"><a href="#">Technik <span class="badge">2</span></a></li>
-                <li role="presentation"><a href="#">Suche</a></li>
-                <li role="presentation"><a href="#">Impressum</a></li>
+            <ul ng-controller="navbarCtrl" class="nav nav-pills nav-stacked nb-menu">
+                <li role="presentation"><a href="/login">Login</a></li>
+                <li ng-repeat="category in categories|orderBy:'title'" role="presentation">
+                    <a href="{{ category.href }}">
+                        {{ category.title }} <span class="badge">{{ category.amount }}</span>
+                    </a>
+                </li>
+                <li role="presentation"><a href="/search">Suche</a></li>
+                <li role="presentation"><a href="/impressum">Impressum</a></li>
             </ul>
         </div>
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <h2>Herzlich Willkommen!</h2>
-                    <p>Sie befinden sich auf der Webseite von Elen und Milan.</p>
-                    <p>Sch&ouml;n, dass sie da sind.</p>
+                    <p>Du befindest dich auf der Webseite von Elen und Milan.</p>
+                    <p>Sch&ouml;n, dass du da bist.</p>
+                    <br>
+                    <p>Stöbere doch ein bisschen in unseren Blogeinträgen :)</p>
+                    <p>Viel Spaß!</p>
+                    <hr>
+                    <p>Du möchtest selbst einen Beitrag schreiben?</p>
+                    <p>Dann logge dich <a href="/login">hier</a> ein oder <a href="/login#register">registriere</a> dich, falls du noch kein Konto hast.</p>
                 </div>
             </div>
         </div>
@@ -41,6 +47,7 @@
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
 <script src="js/module.js"></script>
+<script src="js/controllers.js"></script>
 <script src="js/directives.js"></script>
 </body>
 </html>

@@ -45,7 +45,7 @@ body {
 	font-size: 60px;
 	}
 
-#menu {
+.nb-menu {
 	border: 1px solid lightgray;
 	border-radius: 4px;
 }
