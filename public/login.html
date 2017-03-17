@@ -13,8 +13,7 @@
 <div class="container">
     <nb:header></nb:header>
     <ol class="breadcrumb">
-        <li><a href="index.html">notizblog</a></li>
-        <li>Blog schreiben</li>
+        <li><a href="/">notizblog</a></li>
         <li class="active">Login</li>
     </ol>
     <div class="row">
@@ -29,12 +28,12 @@
                             <h3>Login</h3>
                             <p>Bitte log dich ein, um einen Blogeintrag zu schreiben.</p>
                             <br/>
-                            <form>
+                            <form ng-submit="login()" ng-controller="loginCtrl">
                                 <input class="form-control" type="text" placeholder="E-Mail"
-                                       aria-describedby="mail-icon"/>
+                                       aria-describedby="mail-icon" ng-model="user.mail" required/>
                                 <br/>
                                 <input class="form-control" type="password" placeholder="Passwort"
-                                       aria-describedby="password-icon"/>
+                                       aria-describedby="password-icon" ng-model="user.pwd" required/>
                                 <br/>
                                 <center>
                                     <button class="btn btn-info" type="submit">
@@ -58,7 +57,7 @@
                                 <input class="form-control" type="text" placeholder="Name"
                                        aria-describedby="mail-icon"/>
                                 <br/>
-                                <input class="form-control" type="text" placeholder="E-Mail"
+                                <input class="form-control" type="email" placeholder="E-Mail"
                                        aria-describedby="mail-icon"/>
                                 <br/>
                                 <input class="form-control" type="password" placeholder="Passwort"
@@ -69,7 +68,7 @@
                                 <br/>
                                 <center>
                                     <button class="btn btn-info" type="submit">
-                                        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                        <i class="fa fa-sign-in" aria-hidden="true"></i>
                                         Registrieren
                                     </button>
                                 </center>
