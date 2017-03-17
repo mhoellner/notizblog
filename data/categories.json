@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "title": "Arbeit und Studium",
+    "href": "/arbeit-und-studium"
+  },
+  {
+    "id": 2,
+    "title": "Kultur",
+    "href": "/kultur"
+  },
+  {
+    "id": 3,
+    "title": "Lifestyle",
+    "href": "/lifestyle"
+  },
+  {
+    "id": 4,
+    "title": "Politik",
+    "href": "/politik"
+  },
+  {
+    "id": 5,
+    "title": "Technik",
+    "href": "/technik"
+  }
+]

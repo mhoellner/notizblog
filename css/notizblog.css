@@ -32,26 +32,18 @@ body {
 	margin-top: 10px;
 }
 
-#header{
-	margin-top: 30px;
-	margin-bottom: 5px;
-	padding: 0px 15px; /* Anpassung an CSS-Style von Breadcrumbs */
-}
-
-#header-left {
+.header-logo {
 	background-image: linear-gradient(to top, #009ACD 0%, #87CEFA 50%);
 	font-family: 'Sansita', sans-serif;
-	border-radius: 20px 0px 0px 4px; /* Abrundung der linken Ecken in Header */
+	border-radius: 20px 20px 4px 4px; /* Abrundung der linken Ecken in Header */
+	padding: 3px 15px;
+	margin-top: 20px;
+	margin-bottom: 5px;
 }
 
-#header-left h1 {
+.header-logo h1 {
 	font-size: 60px;
 	}
-
-#header-login {
-	background-color: lightgray;
-	border-radius: 0px 20px 4px 0px; /* Abrundung der rechten Ecken im Header */
-}
 
 #menu {
 	border: 1px solid lightgray;
