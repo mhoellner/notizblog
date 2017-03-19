@@ -29,8 +29,8 @@
                             <p>Bitte log dich ein, um einen Blogeintrag zu schreiben.</p>
                             <br/>
                             <form ng-submit="login()" ng-controller="loginCtrl">
-                                <input class="form-control" type="text" placeholder="E-Mail"
-                                       aria-describedby="mail-icon" ng-model="user.mail" required/>
+                                <input class="form-control" type="text" placeholder="Nutzername"
+                                       aria-describedby="mail-icon" ng-model="user.name" required/>
                                 <br/>
                                 <input class="form-control" type="password" placeholder="Passwort"
                                        aria-describedby="password-icon" ng-model="user.pwd" required/>
@@ -53,17 +53,18 @@
                             <p>Du bist noch nicht registriert, möchtest aber gerne eigene Blogeinträge verfassen?</p>
                             <p>Dann melde dich jetzt hier an:</p>
                             <br/>
-                            <form>
-                                <input class="form-control" type="text" placeholder="Name"
+                            <form ng-submit="register()" ng-controller="registerCtrl">
+                                <input class="form-control" type="text" placeholder="Nutzername" ng-model="user.name"
                                        aria-describedby="mail-icon"/>
                                 <br/>
-                                <input class="form-control" type="email" placeholder="E-Mail"
+                                <input class="form-control" type="email" placeholder="E-Mail" ng-model="user.mail"
                                        aria-describedby="mail-icon"/>
                                 <br/>
-                                <input class="form-control" type="password" placeholder="Passwort"
+                                <input class="form-control" type="password" placeholder="Passwort" ng-model="user.pwd"
                                        aria-describedby="password-icon"/>
                                 <br/>
                                 <input class="form-control" type="password" placeholder="Passwort wiederholen"
+                                       ng-model="user.pwd2"
                                        aria-describedby="password-icon"/>
                                 <br/>
                                 <center>
@@ -83,6 +84,7 @@
 </div>
 <script src="js/jquery-3.1.1.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
 <script src="js/module.js"></script>
 <script src="js/controllers.js"></script>
 <script src="js/directives.js"></script>

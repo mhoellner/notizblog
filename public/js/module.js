@@ -1,1 +1,1 @@
-var notizblogApp = angular.module('notizblogApp', []);
+var notizblogApp = angular.module('notizblogApp', ['ngCookies']);
