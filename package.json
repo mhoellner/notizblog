@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/mhoellner/notizblog/issues"
   },
-  "homepage": "https://github.com/mhoellner/notizblog#readme"
+  "homepage": "https://github.com/mhoellner/notizblog#readme",
+  "dependencies": {
+	"express": "^4.15.2"
+  }
 }
