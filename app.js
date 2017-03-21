@@ -25,18 +25,18 @@ app.get('/userSite', function (req, res) {
 
 app.post('/login/login', function (req, res) {
     console.log('User ' + req.body.name + ' want to login');
-    var users = jsonFile.readFileSync('public/data/users.json');
+    var users = jsonFile.readFileSync('data/users.json');
     for (var u in users) {
         var user = users[u];
         if (user.name == req.body.name)
             if (user.password == req.body.pwd) {
                 console.log('User ' + req.body.name + ' logged in');
                 res.send("0");
-                break;
+                return;
             } else {
                 console.log('Login failed: User ' + req.body.name + ' entered a wrong password');
                 res.send("1");
-                break;
+                return;
             }
     }
 
@@ -45,43 +45,35 @@ app.post('/login/login', function (req, res) {
 });
 
 app.post('/login/register', function (req, res) {
-    // boolean to see if register failed already
-    var isFailed = 0;
 
-    var file = 'public/data/users.json';
+    var file = 'data/users.json';
     console.log('User ' + req.body.name + ' want to register');
 
-    if (isFailed == 0 && req.body.pwd != req.body.pwd2) {
-        console.log('Register failed: Passwords aren\'t equal');
-        isFailed = 1;
-        res.send("1");
-    }
-
-    if (isFailed == 0) {
-        var users = jsonFile.readFileSync(file);
-        for (var u in users) {
-            var user = users[u];
-            if (user.name == req.body.name) {
-                console.log('Register failed: User name ' + req.body.name + ' is already in use');
-                isFailed = 1;
-                res.send("2");
-                break;
-            } else if (user.mail == req.body.mail) {
-                console.log('Register failed: Mail ' + req.body.mail + ' has already an account');
-                isFailed = 1;
-                res.send("3");
-                break;
-            }
+    var users = jsonFile.readFileSync(file);
+    for (var u in users) {
+        var user = users[u];
+        if (user.name == req.body.name) {
+            console.log('Register failed: User name ' + req.body.name + ' is already in use');
+            res.send("2");
+            return;
+        } else if (user.mail == req.body.mail) {
+            console.log('Register failed: Mail ' + req.body.mail + ' has already an account');
+            res.send("3");
+            return;
         }
     }
 
-    if (isFailed == 0) {
-        var newUser = {name: req.body.name, mail: req.body.mail, password: req.body.pwd};
-        users.push(newUser);
-        jsonFile.writeFileSync(file, users);
-        console.log('User ' + req.body.name + ' is registered');
-        res.send("0");
+    if (req.body.pwd == "" || req.body.pwd2 == "" || req.body.pwd != req.body.pwd2) {
+        console.log('Register failed: Passwords aren\'t equal');
+        res.send("1");
+        return;
     }
+
+    var newUser = {name: req.body.name, mail: req.body.mail, password: req.body.pwd};
+    users.push(newUser);
+    jsonFile.writeFileSync(file, users);
+    console.log('User ' + req.body.name + ' is registered');
+    res.send("0");
 });
 
 app.get('/search', function (req, res) {

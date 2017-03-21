@@ -24,24 +24,46 @@ notizblogApp.controller('loginCtrl', function ($scope, $http, $cookies) {
                     window.location = "/userSite";
                 } else if (res.data == "1") {
                     // wrong password
-                    alert("Dein Passwort war falsch.\nBitte versuche es noch einmal");
+                    $('#loginError').html('<div class="alert alert-danger" role="alert">Falsches Passwort. Bitte versuche es erneut.</div>');
                     $scope.user.pwd = '';
+                    $('#loginPwd').focus();
                 } else if (res.data == "2") {
                     // user not found
-                    alert("Es wurde kein Nutzer mit diesem Nutzernamen gefunden\nBitte registriere dich.");
+                    $('#loginError').html('<div class="alert alert-danger" role="alert">Es wurde kein Nutzer mit diesem Nutzernamen gefunden. Bitte registriere dich.</div>');
                     $scope.user = '';
-                    window.location = "/login#register";
+                    $('#loginName').focus();
                 }
             });
     };
 });
 
-notizblogApp.controller('registerCtrl', function ($scope, $http) {
+notizblogApp.controller('registerCtrl', function ($scope, $http, $cookies) {
     $scope.register = function () {
         var jsonData = JSON.stringify($scope.user);
         $http.post('/login/register', jsonData)
             .then(function (res) {
-                console.log(res);
+                if (res.data == "0") {
+                    // register was successful
+                    $cookies.put('nbUser', $scope.user.name);
+                    window.location = "/userSite";
+                } else if (res.data == "1") {
+                    // passwords aren't equal
+                    $('#registerError').html('<div class="alert alert-danger" role="alert">Passwörter stimmen nicht überein.</div>');
+                    $scope.user.pwd = '';
+                    $scope.user.pwd2 = '';
+                    $('#registerPwd1').focus();
+                } else if (res.data == "2") {
+                    // user name already taken
+                    $('#registerError').html('<div class="alert alert-danger" role="alert">Der Nutzername ist bereits vergeben.</div>');
+                    $scope.user.pwd = '';
+                    $scope.user.pwd2 = '';
+                    $('#registerName').focus();
+                } else if (res.data == "3") {
+                    // account with email exists
+                    $('#registerError').html('<div class="alert alert-danger" role="alert">Es existiert bereits ein Account mit dieser E-Mail-Adresse. Bitte melde dich an.</div>');
+                    $scope.user = '';
+                    $('#registerName').focus();
+                }
             });
-    }
+    };
 });

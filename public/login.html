@@ -25,14 +25,15 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-8 col-md-offset-2">
-                            <h3>Login</h3>
+                            <h3 id="login">Login</h3>
                             <p>Bitte log dich ein, um einen Blogeintrag zu schreiben.</p>
                             <br/>
+                            <div id="loginError"></div>
                             <form ng-submit="login()" ng-controller="loginCtrl">
-                                <input class="form-control" type="text" placeholder="Nutzername"
+                                <input id="loginName" class="form-control" type="text" placeholder="Nutzername"
                                        aria-describedby="mail-icon" ng-model="user.name" required/>
                                 <br/>
-                                <input class="form-control" type="password" placeholder="Passwort"
+                                <input id="loginPwd" class="form-control" type="password" placeholder="Passwort"
                                        aria-describedby="password-icon" ng-model="user.pwd" required/>
                                 <br/>
                                 <center>
@@ -53,19 +54,20 @@
                             <p>Du bist noch nicht registriert, möchtest aber gerne eigene Blogeinträge verfassen?</p>
                             <p>Dann melde dich jetzt hier an:</p>
                             <br/>
+                            <div id="registerError"></div>
                             <form ng-submit="register()" ng-controller="registerCtrl">
-                                <input class="form-control" type="text" placeholder="Nutzername" ng-model="user.name"
-                                       aria-describedby="mail-icon"/>
+                                <input id="registerName" class="form-control" type="text" placeholder="Nutzername" ng-model="user.name"
+                                       aria-describedby="mail-icon" required/>
                                 <br/>
-                                <input class="form-control" type="email" placeholder="E-Mail" ng-model="user.mail"
-                                       aria-describedby="mail-icon"/>
+                                <input id="registerMail" class="form-control" type="email" placeholder="E-Mail" ng-model="user.mail"
+                                       aria-describedby="mail-icon" required/>
                                 <br/>
-                                <input class="form-control" type="password" placeholder="Passwort" ng-model="user.pwd"
-                                       aria-describedby="password-icon"/>
+                                <input id="registerPwd1" class="form-control" type="password" placeholder="Passwort" ng-model="user.pwd"
+                                       aria-describedby="password-icon" required/>
                                 <br/>
-                                <input class="form-control" type="password" placeholder="Passwort wiederholen"
+                                <input id="registerPwd2" class="form-control" type="password" placeholder="Passwort wiederholen"
                                        ng-model="user.pwd2"
-                                       aria-describedby="password-icon"/>
+                                       aria-describedby="password-icon" required/>
                                 <br/>
                                 <center>
                                     <button class="btn btn-info" type="submit">
