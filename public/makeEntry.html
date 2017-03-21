@@ -26,25 +26,26 @@
                 <div class="panel-body">
                     <h4>Verfasse einen Blogeintrag</h4>
                     <br/>
-                    <form>
+                    <form ng-submit="saveArticle()" ng-controller="articleFormCtrl">
                         <div class="form-group row">
                             <label for="input-titel" class="col-md-2 col-form-label">Titel</label>
                             <div class="col-md-10">
-                                <input type="text" class="form-control" id="input-titel" required>
+                                <input type="text" class="form-control" id="input-titel" ng-model="article.title"
+                                       required>
                             </div>
                         </div>
                         <br/>
                         <div class="form-group row">
                             <label for="input-picture" class="col-md-2 col-form-label">Titelbild</label>
                             <div class="col-md-10">
-                                <input type="file" id="input-picture">
+                                <input type="file" id="input-picture" ng-model="article.pic">
                             </div>
                         </div>
                         <br/>
                         <div class="form-group row">
                             <label for="input-category" class="col-md-2 col-form-label">Kategorie</label>
                             <div class="col-md-10" ng-controller="categorySelectCtrl" ng-model="categories">
-                                <select class="form-control" id="input-category" required>
+                                <select class="form-control" id="input-category" ng-model="article.category" required>
                                     <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.title}}</option>
                                 </select>
                             </div>
@@ -53,7 +54,8 @@
                         <div class="form-group row">
                             <label for="input-text" class="col-md-2 col-form-label">Text</label>
                             <div class="col-md-10">
-                                <textarea class="form-control" id="input-text" required></textarea>
+                                <textarea class="form-control" id="input-text" ng-model="article.text"
+                                          required></textarea>
                             </div>
                         </div>
                         <br/>

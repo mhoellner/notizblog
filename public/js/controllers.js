@@ -74,3 +74,12 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
             $scope.categories = res.data;
         });
 });
+
+notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
+    $scope.saveArticle = function () {
+        var jsonData = JSON.stringify({"content": $scope.article, "author": $cookies.get('nbUser')});
+        console.log(jsonData);
+        $http.post('/newArticle', jsonData)
+            .then();
+    };
+});
