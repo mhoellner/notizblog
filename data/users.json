@@ -1,1 +1,14 @@
-[{"name":"Elen Niedermeyer","mail":"s_niedermeyer@stud.hwr-berlin.de","password":"test"},{"name":"Milan Höllner","mail":"s_hoellner@stud.hwr-berlin.de","password":"test2"}]
+[
+  {
+    "id": 1,
+    "name": "Elen Niedermeyer",
+    "mail": "s_niedermeyer@stud.hwr-berlin.de",
+    "password": "test"
+  },
+  {
+    "id": 2,
+    "name": "Milan Höllner",
+    "mail": "s_hoellner@stud.hwr-berlin.de",
+    "password": "test2"
+  }
+]

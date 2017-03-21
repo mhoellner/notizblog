@@ -1,0 +1,81 @@
+<html ng-app="notizblogApp">
+<head>
+    <title>
+        notizblog
+    </title>
+    <meta charset="UTF-8"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/notizblog.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <nb:header></nb:header>
+    <ol class="breadcrumb">
+        <li><a href="/">notizblog</a></li>
+        <li><a href="/userSite">Meine Beiträge</a></li>
+        <li class="active">Blog schreiben</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <nb:menu></nb:menu>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h4>Verfasse einen Blogeintrag</h4>
+                    <br/>
+                    <form>
+                        <div class="form-group row">
+                            <label for="input-titel" class="col-md-2 col-form-label">Titel</label>
+                            <div class="col-md-10">
+                                <input type="text" class="form-control" id="input-titel" required>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group row">
+                            <label for="input-picture" class="col-md-2 col-form-label">Titelbild</label>
+                            <div class="col-md-10">
+                                <input type="file" id="input-picture">
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group row">
+                            <label for="input-category" class="col-md-2 col-form-label">Kategorie</label>
+                            <div class="col-md-10" ng-controller="categorySelectCtrl" ng-model="categories">
+                                <select class="form-control" id="input-category" required>
+                                    <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.title}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <br/>
+                        <div class="form-group row">
+                            <label for="input-text" class="col-md-2 col-form-label">Text</label>
+                            <div class="col-md-10">
+                                <textarea class="form-control" id="input-text" required></textarea>
+                            </div>
+                        </div>
+                        <br/>
+                        <center>
+                            <button class="btn btn-info" type="submit">
+                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                Speichern
+                            </button>
+                        </center>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-route.js"></script>
+<script src="js/module.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+
+<script src="js/notizblog.js"></script>
+</body>
+</html>
