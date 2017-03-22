@@ -55,7 +55,7 @@ textarea {
 	max-width: 100%;
 }
 
-.no-link a:hover, a:link, a:visited {
+a.no-link, .breadcrumb a, .nb-menu a {
 	color: black;
 	text-decoration: none;
 }

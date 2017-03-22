@@ -37,6 +37,13 @@ notizblogApp.controller('loginCtrl', function ($scope, $http, $cookies) {
     };
 });
 
+notizblogApp.controller('logoutCtrl', function ($scope, $cookies) {
+    $scope.logout = function () {
+        $cookies.remove('nbUser');
+        window.location = "/";
+    };
+});
+
 notizblogApp.controller('registerCtrl', function ($scope, $http, $cookies) {
     $scope.register = function () {
         var jsonData = JSON.stringify($scope.user);
@@ -76,10 +83,14 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
 });
 
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
-    $scope.saveArticle = function () {
-        var jsonData = JSON.stringify({"content": $scope.article, "author": $cookies.get('nbUser')});
-        console.log(jsonData);
-        $http.post('/newArticle', jsonData)
-            .then();
-    };
+    if ($cookies.get('nbUser') != null){
+        $scope.saveArticle = function () {
+            var jsonData = JSON.stringify({"content": $scope.article, "author": $cookies.get('nbUser')});
+            console.log(jsonData);
+            $http.post('/newArticle', jsonData)
+                .then();
+        };
+    } else {
+        window.location = "/login";
+    }
 });
