@@ -92,6 +92,10 @@ app.post('/login/register', function (req, res) {
     res.send("0");
 });
 
+app.post('/newArticle', function (req, res) {
+    res.sendStatus(200);
+});
+
 function generateId(array) {
     array.sort(function (a, b) {
         return a.id - b.id;

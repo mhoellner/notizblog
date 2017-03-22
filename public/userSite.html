@@ -22,13 +22,14 @@
         </div>
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" ng-controller="usernameCtrl">
                     <div class="text-right">
                         <button class="btn btn-info" ng-click="logout()" ng-controller="logoutCtrl">
                             <i class="fa fa-sign-out" aria-hidden="true"></i>
                             Logout
                         </button>
                     </div>
+                    Hallo {{ username }}!<br>
                     <a href="/newArticle">Hier</a> kannst du einen neuen Beitrag schreiben.
                     <hr>
                     Deine Beiträge:
@@ -44,6 +45,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
 <script src="js/module.js"></script>
+<script src="js/services.js"></script>
 <script src="js/controllers.js"></script>
 <script src="js/directives.js"></script>
 

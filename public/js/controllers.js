@@ -3,7 +3,6 @@ notizblogApp.controller('navbarCtrl', function ($scope, $http, $cookies) {
         .then(function (res) {
             $scope.categories = res.data;
         });
-
     // show different things in menu if the user is logged in
     var user = $cookies.get('nbUser');
     if (user != null) {
@@ -13,65 +12,63 @@ notizblogApp.controller('navbarCtrl', function ($scope, $http, $cookies) {
     }
 });
 
-notizblogApp.controller('loginCtrl', function ($scope, $http, $cookies) {
+notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {
+    $scope.username = $cookies.get('nbUser');
+});
+
+notizblogApp.controller('loginCtrl', function ($scope, userService) {
     $scope.login = function () {
-        var jsonData = JSON.stringify($scope.user);
-        $http.post('/login/login', jsonData)
-            .then(function (res) {
-                if (res.data == "0") {
-                    // login ok
-                    $cookies.put('nbUser', $scope.user.name);
-                    window.location = "/userSite";
-                } else if (res.data == "1") {
-                    // wrong password
-                    $('#loginError').html('<div class="alert alert-danger" role="alert">Falsches Passwort. Bitte versuche es erneut.</div>');
-                    $scope.user.pwd = '';
-                    $('#loginPwd').focus();
-                } else if (res.data == "2") {
-                    // user not found
-                    $('#loginError').html('<div class="alert alert-danger" role="alert">Es wurde kein Nutzer mit diesem Nutzernamen gefunden. Bitte registriere dich.</div>');
-                    $scope.user = '';
-                    $('#loginName').focus();
-                }
-            });
+        userService.login($scope.user, function (resData) {
+            if (resData == "0") {
+                window.location = "/userSite";
+            } else if (resData == "1") {
+                // wrong password
+                $('#loginError').html('<div class="alert alert-danger" role="alert">Falsches Passwort. Bitte versuche es erneut.</div>');
+                $scope.user.pwd = '';
+                $('#loginPwd').focus();
+            } else if (resData == "2") {
+                // user not found
+                var htmlString = '<div class="alert alert-danger" role="alert">Es wurde kein Nutzer mit dem Nutzernamen \"' + $scope.user.name + '\" gefunden. Bitte registriere dich.</div>';
+                $('#loginError').html(htmlString);
+                $scope.user = '';
+                $('#loginName').focus();
+            }
+        });
     };
 });
 
-notizblogApp.controller('logoutCtrl', function ($scope, $cookies) {
+notizblogApp.controller('logoutCtrl', function ($scope, userService) {
     $scope.logout = function () {
-        $cookies.remove('nbUser');
+        userService.logout();
         window.location = "/";
     };
 });
 
-notizblogApp.controller('registerCtrl', function ($scope, $http, $cookies) {
+notizblogApp.controller('registerCtrl', function ($scope, userService) {
     $scope.register = function () {
-        var jsonData = JSON.stringify($scope.user);
-        $http.post('/login/register', jsonData)
-            .then(function (res) {
-                if (res.data == "0") {
-                    // register was successful
-                    $cookies.put('nbUser', $scope.user.name);
-                    window.location = "/userSite";
-                } else if (res.data == "1") {
-                    // passwords aren't equal
-                    $('#registerError').html('<div class="alert alert-danger" role="alert">Passwörter stimmen nicht überein.</div>');
-                    $scope.user.pwd = '';
-                    $scope.user.pwd2 = '';
-                    $('#registerPwd1').focus();
-                } else if (res.data == "2") {
-                    // user name already taken
-                    $('#registerError').html('<div class="alert alert-danger" role="alert">Der Nutzername ist bereits vergeben.</div>');
-                    $scope.user.pwd = '';
-                    $scope.user.pwd2 = '';
-                    $('#registerName').focus();
-                } else if (res.data == "3") {
-                    // account with email exists
-                    $('#registerError').html('<div class="alert alert-danger" role="alert">Es existiert bereits ein Account mit dieser E-Mail-Adresse. Bitte melde dich an.</div>');
-                    $scope.user = '';
-                    $('#registerName').focus();
-                }
-            });
+        userService.register($scope.user, function (resData) {
+            if (resData == "0") {
+                // register was successful
+                window.location = "/userSite";
+            } else if (resData == "1") {
+                // passwords aren't equal
+                $('#registerError').html('<div class="alert alert-danger" role="alert">Die Passwörter stimmen nicht überein.</div>');
+                $scope.user.pwd = '';
+                $scope.user.pwd2 = '';
+                $('#registerPwd1').focus();
+            } else if (resData == "2") {
+                // user name already taken
+                $('#registerError').html('<div class="alert alert-danger" role="alert">Der Nutzername ist bereits vergeben.</div>');
+                $scope.user.pwd = '';
+                $scope.user.pwd2 = '';
+                $('#registerName').focus();
+            } else if (resData == "3") {
+                // account with email exists
+                $('#registerError').html('<div class="alert alert-danger" role="alert">Es existiert bereits ein Account mit dieser E-Mail-Adresse. Bitte melde dich an.</div>');
+                $scope.user = '';
+                $('#registerName').focus();
+            }
+        });
     };
 });
 
