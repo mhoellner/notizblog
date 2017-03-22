@@ -83,12 +83,24 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
 });
 
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
-    if ($cookies.get('nbUser') != null){
+    if ($cookies.get('nbUser') != null) {
         $scope.saveArticle = function () {
-            var jsonData = JSON.stringify({"content": $scope.article, "author": $cookies.get('nbUser')});
-            console.log(jsonData);
-            $http.post('/newArticle', jsonData)
-                .then();
+
+            var picture = document.getElementById('input-picture').files[0];
+            var reader = new FileReader(); // HTML5 File Reader
+            reader.onload = function (theFileData) {
+                var fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
+
+                var jsonData = JSON.stringify({
+                    "content": $scope.article,
+                    "author": $cookies.get('nbUser'),
+                    "picture": fileData
+                });
+                $http.post('/newArticle', jsonData)
+                    .then();
+
+            };
+            reader.readAsDataURL(picture);
         };
     } else {
         window.location = "/login";
