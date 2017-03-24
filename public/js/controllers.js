@@ -85,21 +85,22 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
 
             var picture = document.getElementById('input-picture').files[0];
             var reader = new FileReader(); // HTML5 File Reader
+            reader.readAsDataURL(picture);
             reader.onload = function (theFileData) {
                 var fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
 
-                var jsonData = JSON.stringify({
+                var jsonData = {
                     "content": $scope.article,
-                    "author": $cookies.get('nbUser'),
-                    "picture": fileData
-                });
+                    "picture": fileData,
+                    "author": $cookies.get('nbUser')
+                };
                 $http.post('/newArticle', jsonData)
                     .then();
 
             };
-            reader.readAsDataURL(picture);
         };
     } else {
+        // Der Nutzer ist nicht korrekt eingeloggt
         window.location = "/login";
     }
 });
