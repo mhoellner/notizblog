@@ -37,6 +37,27 @@
                     <div>
                         irgendwas mit ng-repeat mit filter nach autor
                     </div>
+                    <div ng-controller="myArticleCtrl">
+                        <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:cookie}">
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h2><a href="#">{{article.content.title}}</a></h2> <!--TODO: Link auf Detailseite-->
+                                    Autor: {{article.author}}
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <span class="label label-primary">{{article.date | date: 'dd.MM.yyyy'}}</span>
+                                </div>
+                            </div>
+                            <img src="{{article.picture}}" class="img-responsive"/>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    {{article.content.text}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

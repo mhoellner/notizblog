@@ -94,6 +94,7 @@ app.post('/login/register', function (req, res) {
 });
 
 app.post('/newArticle', function (req, res) {
+    console.log('Try to save new article');
     if (req.body.author != ''){
         console.log('User ' + req.body.author + ' saved a new blog entry.');
         //save article
@@ -105,8 +106,8 @@ app.post('/newArticle', function (req, res) {
 
         var today = new Date();
         var base64data = req.body.picture.replace(/^data:image\/png;base64,/, "");
-        var imageFilePath = 'public/data/img/article-' + newID + '.png';
-        fs.writeFile(imageFilePath, base64data, 'base64', function (err) {
+        var imageFilePath = 'data/img/article-' + newID + '.png';
+        fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
             console.log(err);
         });
 

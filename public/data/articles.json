@@ -3,11 +3,22 @@
     "id": 0,
     "author": "Milan Höllner",
     "content": {
-      "title": "test",
+      "title": "TestArtikel",
       "category": "3",
-      "text": "sqed"
+      "text": "asdfavafva"
     },
-    "date": "2017-03-24T16:24:47.723Z",
-    "picture": "public/data/img/article-0.png"
+    "date": "2017-03-24T16:55:39.018Z",
+    "picture": "data/img/article-0.png"
+  },
+  {
+    "id": 1,
+    "author": "Milan Höllner",
+    "content": {
+      "title": "Zweiter Artikel",
+      "category": "2",
+      "text": "Bla bli blub <br>\nasdfacpsadf"
+    },
+    "date": "2017-03-24T17:10:38.494Z",
+    "picture": "data/img/article-1.png"
   }
 ]

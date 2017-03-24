@@ -79,6 +79,15 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
         });
 });
 
+notizblogApp.controller('myArticleCtrl', function ($scope, $http, $cookies) {
+    $scope.cookie = $cookies.get('nbUser');
+    console.log('Getting Articles');
+    $http.get('data/articles.json')
+        .then(function (res) {
+            $scope.articles = res.data;
+        });
+});
+
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     if ($cookies.get('nbUser') != null) {
         $scope.saveArticle = function () {
@@ -95,7 +104,15 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
                     "author": $cookies.get('nbUser')
                 };
                 $http.post('/newArticle', jsonData)
-                    .then();
+                    .then(function (res) {
+                        if (res.status == 200){
+                            window.location = '/userSite';
+                        } else if (res.status == 403){
+                            window.location = '/login';
+                        } else {
+                            alert('Ein Fehler ist aufgetreten.');
+                        }
+                    });
 
             };
         };
