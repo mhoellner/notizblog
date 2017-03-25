@@ -103,11 +103,12 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
                     "picture": fileData,
                     "author": $cookies.get('nbUser')
                 };
+
                 $http.post('/newArticle', jsonData)
                     .then(function (res) {
-                        if (res.status == 200){
+                        if (res.status == 200) {
                             window.location = '/userSite';
-                        } else if (res.status == 403){
+                        } else if (res.status == 403) {
                             window.location = '/login';
                         } else {
                             alert('Ein Fehler ist aufgetreten.');
