@@ -22,8 +22,8 @@
         </div>
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-body" ng-model="articles" ng-model="actualCategory" ng-controller="overviewCtrl">
-                    <div ng-repeat="article in articles|filter{content.category:actualCategory}">
+                <div class="panel-body" ng-controller="overviewCtrl">
+                    <div ng-repeat="article in articles  | orderBy: '-date' | filter: {content: {category:actualCategory}}">
                         Hallo
                     </div>
                 </div>

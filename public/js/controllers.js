@@ -123,7 +123,7 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     }
 });
 
-notizblogApp.controller('overviewCtrl', function ($scope, $location) {
+notizblogApp.controller('overviewCtrl', function ($scope, $http) {
     var params = window.location.search.substring(1);
     params = params.split('?');
     for (var i in params) {
@@ -133,8 +133,11 @@ notizblogApp.controller('overviewCtrl', function ($scope, $location) {
             break;
         }
     }
-    console.log(id);
-
     $scope.actualCategory = id;
+
+    $http.get('data/articles.json')
+        .then(function (res) {
+            $scope.articles = res.data;
+        });
 
 });
