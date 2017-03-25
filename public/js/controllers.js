@@ -79,27 +79,45 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
         });
 });
 
+notizblogApp.controller('myArticleCtrl', function ($scope, $http, $cookies) {
+    $scope.cookie = $cookies.get('nbUser');
+    console.log('Getting Articles');
+    $http.get('data/articles.json')
+        .then(function (res) {
+            $scope.articles = res.data;
+        });
+});
+
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     if ($cookies.get('nbUser') != null) {
         $scope.saveArticle = function () {
 
             var picture = document.getElementById('input-picture').files[0];
             var reader = new FileReader(); // HTML5 File Reader
+            reader.readAsDataURL(picture);
             reader.onload = function (theFileData) {
                 var fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
 
-                var jsonData = JSON.stringify({
+                var jsonData = {
                     "content": $scope.article,
-                    "author": $cookies.get('nbUser'),
-                    "picture": fileData
-                });
+                    "picture": fileData,
+                    "author": $cookies.get('nbUser')
+                };
                 $http.post('/newArticle', jsonData)
-                    .then();
+                    .then(function (res) {
+                        if (res.status == 200){
+                            window.location = '/userSite';
+                        } else if (res.status == 403){
+                            window.location = '/login';
+                        } else {
+                            alert('Ein Fehler ist aufgetreten.');
+                        }
+                    });
 
             };
-            reader.readAsDataURL(picture);
         };
     } else {
+        // Der Nutzer ist nicht korrekt eingeloggt
         window.location = '/login';
     }
 });

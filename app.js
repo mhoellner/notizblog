@@ -1,11 +1,12 @@
 var express = require('express');
 var jsonFile = require('jsonfile');
 var bodyParser = require('body-parser');
+var fs = require('fs');
 
 var app = express();
 
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.static('public'));
 
 var userFile = 'data/users.json';
@@ -99,7 +100,40 @@ app.post('/login/register', function (req, res) {
 });
 
 app.post('/newArticle', function (req, res) {
-    res.sendStatus(200);
+    console.log('Try to save new article');
+    if (req.body.author != ''){
+        console.log('User ' + req.body.author + ' saved a new blog entry.');
+        //save article
+        var fileName = 'public/data/articles.json';
+        var articles = jsonFile.readFileSync(fileName);
+        var newID = generateId(articles);
+
+        //TODO: Verify file before saving
+
+        var today = new Date();
+        var base64data = req.body.picture.replace(/^data:image\/png;base64,/, "");
+        var imageFilePath = 'data/img/article-' + newID + '.png';
+        fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
+            console.log(err);
+        });
+
+        var newArticle = {
+            id: newID,
+            author: req.body.author,
+            content: req.body.content,
+            date: today,
+            picture: imageFilePath
+        };
+        articles.push(newArticle);
+
+        jsonFile.writeFileSync(fileName, articles, {spaces: 2});
+
+        res.sendStatus(200);
+
+    } else {
+        console.log('No author on POST-Request.');
+        res.sendStatus(403);
+    }
 });
 
 function generateId(array) {
