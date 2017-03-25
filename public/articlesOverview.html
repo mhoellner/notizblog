@@ -1,0 +1,44 @@
+<html ng-app="notizblogApp">
+<head>
+    <title>
+        Login | notizblog
+    </title>
+    <meta charset="UTF-8"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/notizblog.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <nb:header></nb:header>
+    <ol class="breadcrumb">
+        <li><a href="/">notizblog</a></li>
+        <li class="active">Login</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <nb:menu></nb:menu>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body" ng-model="articles" ng-model="actualCategory" ng-controller="overviewCtrl">
+                    <div ng-repeat="article in articles|filter{content.category:actualCategory}">
+                        Hallo
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
+<script src="js/module.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+
+<script src="js/notizblog.js"></script>
+</body>
+</html>
