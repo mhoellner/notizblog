@@ -2,7 +2,7 @@
     <li id="loginNav" role="presentation"><a href="/login">Login</a></li>
     <li id="userNav" role="presentation"><a href="/userSite">Meine Beitr&auml;ge</a></li>
     <li ng-repeat="category in categories|orderBy:'title'" role="presentation">
-        <a href="/articles?id={{ category.id }}">
+        <a href="/articlesOverview?category={{ category.id }}">
             {{ category.title }} <span class="badge">{{ category.amount }}</span>
         </a>
     </li>
