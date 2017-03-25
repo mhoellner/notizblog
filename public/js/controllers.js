@@ -81,7 +81,6 @@ notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
 
 notizblogApp.controller('myArticleCtrl', function ($scope, $http, $cookies) {
     $scope.cookie = $cookies.get('nbUser');
-    console.log('Getting Articles');
     $http.get('data/articles.json')
         .then(function (res) {
             $scope.articles = res.data;
@@ -128,7 +127,7 @@ notizblogApp.controller('overviewCtrl', function ($scope, $http) {
     params = params.split('?');
     for (var i in params) {
         var string = params[i];
-        if (string.search('/id/')) {
+        if (string.search('/category/')) {
             var id = string.substring(string.indexOf("=") + 1);
             break;
         }
@@ -139,5 +138,4 @@ notizblogApp.controller('overviewCtrl', function ($scope, $http) {
         .then(function (res) {
             $scope.articles = res.data;
         });
-
 });

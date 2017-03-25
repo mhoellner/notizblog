@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Login | notizblog
+        Beiträge | notizblog
     </title>
     <meta charset="UTF-8"/>
     <link href="css/bootstrap.css" rel="stylesheet"/>
@@ -14,7 +14,7 @@
     <nb:header></nb:header>
     <ol class="breadcrumb">
         <li><a href="/">notizblog</a></li>
-        <li class="active">Login</li>
+        <li class="active">Beiträge</li>
     </ol>
     <div class="row">
         <div class="col-md-3">
@@ -22,9 +22,23 @@
         </div>
         <div class="col-md-9">
             <div class="panel panel-default">
-                <div class="panel-body" ng-controller="overviewCtrl">
-                    <div ng-repeat="article in articles  | orderBy: '-date' | filter: {content: {category:actualCategory}}">
-                        Hallo
+                <div class="panel-body">
+                    <div ng-controller="overviewCtrl">
+                        <div ng-repeat="article in articles  | orderBy: '-date' | filter: {content: {category:actualCategory}} as filtered">
+                            <hr/>
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h3><a href="/article?id={{article.id}}">{{article.content.title}}</a></h3>
+                                    Autor: {{article.author}}
+                                </div>
+                                <div class="col-md-3 text-right">
+                                    <span class="label label-primary">{{article.date | date: 'dd.MM.yyyy'}}</span>
+                                </div>
+                            </div>
+                            <img src="{{article.picture}}" class="img-responsive"/>
+                            <hr>
+                        </div>
+                        <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>
                     </div>
                 </div>
             </div>

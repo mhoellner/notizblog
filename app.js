@@ -31,7 +31,7 @@ app.get('/newArticle', function (req, res) {
     res.sendfile('public/makeEntry.html');
 });
 
-app.get('/articles*', function(req, res){
+app.get('/articlesOverview', function(req, res){
     console.log('Requested /articles');
     res.sendfile('public/articlesOverview.html');
 });
