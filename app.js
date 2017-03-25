@@ -8,6 +8,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.use(express.static('public'));
 
+var userFile = 'data/users.json';
+
 app.get('/', function (req, res) {
     console.log('Requested home');
     res.sendfile('public/index.html');
@@ -28,6 +30,11 @@ app.get('/newArticle', function (req, res) {
     res.sendfile('public/makeEntry.html');
 });
 
+app.get('/articles*', function(req, res){
+    console.log('Requested /articles');
+    res.sendfile('public/articlesOverview.html');
+});
+
 app.get('/search', function (req, res) {
     console.log('Requested /search');
     res.sendfile('public/404.html');
@@ -40,7 +47,7 @@ app.get('/impressum', function (req, res) {
 
 app.post('/login/login', function (req, res) {
     console.log('User ' + req.body.name + ' want to login');
-    var users = jsonFile.readFileSync('data/users.json');
+    var users = jsonFile.readFileSync(userFile);
     for (var u in users) {
         var user = users[u];
         if (user.name == req.body.name)
@@ -61,10 +68,9 @@ app.post('/login/login', function (req, res) {
 
 app.post('/login/register', function (req, res) {
 
-    var file = 'data/users.json';
     console.log('User ' + req.body.name + ' want to register');
 
-    var users = jsonFile.readFileSync(file);
+    var users = jsonFile.readFileSync(userFile);
     for (var u in users) {
         var user = users[u];
         if (user.name == req.body.name) {
@@ -87,7 +93,7 @@ app.post('/login/register', function (req, res) {
     var id = generateId(users);
     var newUser = {id: id, name: req.body.name, mail: req.body.mail, password: req.body.pwd};
     users.push(newUser);
-    jsonFile.writeFileSync(file, users, {spaces: 2});
+    jsonFile.writeFileSync(userFile, users, {spaces: 2});
     console.log('User ' + req.body.name + ' is registered');
     res.send("0");
 });

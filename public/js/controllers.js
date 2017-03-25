@@ -100,6 +100,22 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
             reader.readAsDataURL(picture);
         };
     } else {
-        window.location = "/login";
+        window.location = '/login';
     }
+});
+
+notizblogApp.controller('overviewCtrl', function ($scope, $location) {
+    var params = window.location.search.substring(1);
+    params = params.split('?');
+    for (var i in params) {
+        var string = params[i];
+        if (string.search('/id/')) {
+            var id = string.substring(string.indexOf("=") + 1);
+            break;
+        }
+    }
+    console.log(id);
+
+    $scope.actualCategory = id;
+
 });
