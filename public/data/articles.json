@@ -20,5 +20,16 @@
     },
     "date": "2017-03-24T17:10:38.494Z",
     "picture": "data/img/article-1.png"
+  },
+  {
+    "id": 2,
+    "author": "Milan Höllner",
+    "content": {
+      "title": "Kategorie aktualisieren",
+      "category": "1",
+      "text": "Der Counter der Kategorie wird jetzt bei jedem neuen Artikel um eins erhöht.\nDie Funktion, die dafür geschrieben wurde, kann auch zum dekrementieren des Counters verwendet werden."
+    },
+    "date": "2017-03-26T10:04:45.585Z",
+    "picture": "data/img/article-2.png"
   }
 ]

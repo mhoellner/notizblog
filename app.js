@@ -31,19 +31,19 @@ app.get('/newArticle', function (req, res) {
     res.sendfile('public/makeEntry.html');
 });
 
-app.get('/articlesOverview', function(req, res){
+app.get('/articlesOverview', function (req, res) {
     console.log('Requested /articles');
     res.sendfile('public/articlesOverview.html');
 });
 
 app.get('/search', function (req, res) {
     console.log('Requested /search');
-    res.sendfile('public/404.html');
+    res.status(404).sendfile('public/404.html');
 });
 
 app.get('/impressum', function (req, res) {
     console.log('Requested /impressum');
-    res.sendfile('public/404.html');
+    res.status(404).sendfile('public/404.html');
 });
 
 app.post('/login/login', function (req, res) {
@@ -101,7 +101,7 @@ app.post('/login/register', function (req, res) {
 
 app.post('/newArticle', function (req, res) {
     console.log('Try to save new article');
-    if (req.body.author != ''){
+    if (req.body.author != '') {
         console.log('User ' + req.body.author + ' saved a new blog entry.');
         //save article
         var fileName = 'public/data/articles.json';
@@ -129,12 +129,29 @@ app.post('/newArticle', function (req, res) {
         jsonFile.writeFileSync(fileName, articles, {spaces: 2});
 
         res.sendStatus(200);
+        adjustArticleCounter(req.body.content.category, true);
 
     } else {
         console.log('No author on POST-Request.');
         res.sendStatus(403);
     }
 });
+
+function adjustArticleCounter(categoryID, increment) {
+    var categoryFile = 'public/data/categories.json';
+    var categories = jsonFile.readFileSync(categoryFile);
+    for (var c in categories) {
+        var category = categories[c];
+        if (category.id == categoryID){
+            if (increment){
+                category.amount = category.amount + 1;
+            } else {
+                category.amount = category.amount - 1;
+            }
+        }
+    }
+    jsonFile.writeFileSync(categoryFile, categories, {spaces: 2});
+}
 
 function generateId(array) {
     array.sort(function (a, b) {

@@ -3,19 +3,19 @@
     "id": 1,
     "title": "Arbeit und Studium",
     "href": "/arbeit-und-studium",
-    "amount": 0
+    "amount": 1
   },
   {
     "id": 2,
     "title": "Kultur",
     "href": "/kultur",
-    "amount": 0
+    "amount": 1
   },
   {
     "id": 3,
     "title": "Lifestyle",
     "href": "/lifestyle",
-    "amount": 0
+    "amount": 1
   },
   {
     "id": 4,
