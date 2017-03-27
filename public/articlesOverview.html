@@ -37,7 +37,7 @@
                                     <span class="label label-primary">{{article.date | date: 'dd.MM.yyyy'}}</span>
                                 </div>
                             </div>
-                            <img src="{{article.picture}}" class="img-responsive"/>
+                            <img ng-src="{{article.picture}}" class="img-responsive"/>
                             <hr>
                         </div>
                         <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>

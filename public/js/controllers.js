@@ -145,6 +145,27 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     }
 });
 
+notizblogApp.controller('articleManagementCtrl', ['$scope', '$http', function ($scope, $http) {
+    $scope.UpdateArticle = function () {
+
+    };
+    $scope.DeleteArticle = function () {
+        var canBeDeleted = confirm('Bist du dir sicher, dass du diesen Artikel löschen möchtest?\n\nEs gibt kein Zurück!');
+        if (canBeDeleted) {
+            var param = {
+                "author": $scope.article.author,
+                "articleID": $scope.article.id
+            };
+            $http.post('/deleteArticle', param)
+                .then(function (res) {
+                    window.location = '/userSite';
+                });
+        } else {
+
+        }
+    };
+}]);
+
 notizblogApp.controller('allArticlesCtrl', function ($scope, articleService) {
     articleService.allArticles(function (res) {
         $scope.articles = res;
