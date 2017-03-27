@@ -114,7 +114,9 @@ app.post('/newArticle', function (req, res) {
         var base64data = req.body.picture.replace(/^data:image\/png;base64,/, "");
         var imageFilePath = 'data/img/article-' + newID + '.png';
         fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
-            console.log(err);
+            if (err){
+                console.log(err);
+            }
         });
 
         var newArticle = {
