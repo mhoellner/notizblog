@@ -39,3 +39,57 @@ notizblogApp.service('userService', function ($http, $cookies) {
             });
     };
 });
+
+notizblogApp.service('categoryService', function ($http) {
+    var self = this;
+
+    // gives all categories
+    self.allCategories = function (callback) {
+        $http.get('data/categories.json')
+            .then(function (res) {
+                callback(res.data);
+            });
+    };
+
+    // gives the category with the given id
+    self.searchCategory = function (id, callback) {
+        $http.get('data/categories.json')
+            .then(function (res) {
+                resData = res.data;
+                for (var i = 0; i < resData.length; i++) {
+                    var category = resData[i];
+                    if (category.id == id) {
+                        callback(category);
+                        break;
+                    }
+                }
+            });
+    };
+});
+
+notizblogApp.service('articleService', function ($http) {
+    var self = this;
+
+    // gives all articles
+    self.allArticles = function (callback) {
+        $http.get('data/articles.json')
+            .then(function (res) {
+                callback(res.data);
+            });
+    };
+
+    // gives the article with the given id
+    self.searchArticle = function (id, callback) {
+        $http.get('data/articles.json')
+            .then(function (res) {
+                resData = res.data;
+                for (var i = 0; i < resData.length; i++) {
+                    var article = resData[i];
+                    if (article.id == id) {
+                        callback(article);
+                        break;
+                    }
+                }
+            });
+    };
+});

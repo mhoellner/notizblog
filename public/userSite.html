@@ -34,12 +34,14 @@
                     <hr>
                     Deine Beiträge:
                     Klicke auf einen Beitrag, um ihn zu ändern oder zu löschen.
-                    <div ng-controller="myArticleCtrl">
-                        <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:cookie} as filtered">
+                    <div ng-controller="allArticlesCtrl">
+                        <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:username} as filtered">
                             <hr/>
                             <div class="row">
                                 <div class="col-md-9">
-                                    <h3><a href="#">{{article.content.title}}</a></h3> <!--TODO: Link auf Detailseite-->
+                                    <h3>
+                                        <a href="href=/article?id={{article.id}}">{{article.content.title}}</a>
+                                    </h3>
                                     Autor: {{article.author}}
                                 </div>
                                 <div class="col-md-3 text-right">

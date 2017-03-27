@@ -1,8 +1,4 @@
-notizblogApp.controller('navbarCtrl', function ($scope, $http, $cookies) {
-    $http.get('data/categories.json')
-        .then(function (res) {
-            $scope.categories = res.data;
-        });
+notizblogApp.controller('navbarCtrl', function ($scope, $cookies, categoryService) {
     // show different things in menu if the user is logged in
     var user = $cookies.get('nbUser');
     if (user != null) {
@@ -72,19 +68,25 @@ notizblogApp.controller('registerCtrl', function ($scope, userService) {
     };
 });
 
-notizblogApp.controller('categorySelectCtrl', function ($scope, $http) {
-    $http.get('data/categories.json')
-        .then(function (res) {
-            $scope.categories = res.data;
-        });
+notizblogApp.controller('allCategoriesCtrl', function ($scope, categoryService) {
+    categoryService.allCategories(function (res) {
+        $scope.categories = res;
+    });
 });
 
-notizblogApp.controller('myArticleCtrl', function ($scope, $http, $cookies) {
-    $scope.cookie = $cookies.get('nbUser');
-    $http.get('data/articles.json')
-        .then(function (res) {
-            $scope.articles = res.data;
-        });
+notizblogApp.controller('categoryByIdCtrl', function ($scope, categoryService) {
+    var params = window.location.search.substring(1);
+    params = params.split('&');
+    for (var i in params) {
+        var string = params[i];
+        if (string.search('/category/')) {
+            var id = string.substring(string.indexOf("=") + 1);
+            break;
+        }
+    }
+    categoryService.searchCategory(id, function (res) {
+        $scope.actualCategory = res;
+    });
 });
 
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
@@ -122,20 +124,8 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     }
 });
 
-notizblogApp.controller('overviewCtrl', function ($scope, $http) {
-    var params = window.location.search.substring(1);
-    params = params.split('?');
-    for (var i in params) {
-        var string = params[i];
-        if (string.search('/category/')) {
-            var id = string.substring(string.indexOf("=") + 1);
-            break;
-        }
-    }
-    $scope.actualCategory = id;
-
-    $http.get('data/articles.json')
-        .then(function (res) {
-            $scope.articles = res.data;
-        });
+notizblogApp.controller('allArticlesCtrl', function ($scope, articleService) {
+    articleService.allArticles(function (res) {
+        $scope.articles = res;
+    });
 });

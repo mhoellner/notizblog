@@ -10,11 +10,11 @@
     <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
+<div class="container" ng-model="actualCategory" ng-controller="categoryByIdCtrl">
     <nb:header></nb:header>
     <ol class="breadcrumb">
         <li><a href="/">notizblog</a></li>
-        <li class="active">Beiträge</li>
+        <li class="active">{{actualCategory.title}}</li>
     </ol>
     <div class="row">
         <div class="col-md-3">
@@ -23,12 +23,14 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <div ng-controller="overviewCtrl">
-                        <div ng-repeat="article in articles  | orderBy: '-date' | filter: {content: {category:actualCategory}} as filtered">
+                    <div ng-controller="allArticlesCtrl">
+                        <div ng-repeat="article in articles  | orderBy: '-date' | filter: {content: {category:actualCategory.id}} as filtered">
                             <hr/>
                             <div class="row">
                                 <div class="col-md-9">
-                                    <h3><a href="/article?id={{article.id}}">{{article.content.title}}</a></h3>
+                                    <h3>
+                                        <a href="/article?id={{article.id}}">{{article.content.title}}</a>
+                                    </h3>
                                     Autor: {{article.author}}
                                 </div>
                                 <div class="col-md-3 text-right">
