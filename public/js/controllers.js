@@ -12,6 +12,16 @@ notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {
     $scope.username = $cookies.get('nbUser');
 });
 
+notizblogApp.controller('userCtrl', function ($scope, userService) {
+    $scope.articleInitialized
+        .then(function (resolved) {
+            var user = $scope.actualArticle.author;
+            userService.searchUserByName(user, function (res) {
+                $scope.user = res;
+            });
+        });
+});
+
 notizblogApp.controller('loginCtrl', function ($scope, userService) {
     $scope.login = function () {
         userService.login($scope.user, function (resData) {
@@ -79,11 +89,12 @@ notizblogApp.controller('categoryByIdCtrl', function ($scope, categoryService) {
     params = params.split('&');
     for (var i in params) {
         var string = params[i];
-        if (string.search('/category/')) {
+        if (string.search(/^category/) != -1) {
             var id = string.substring(string.indexOf("=") + 1);
             break;
         }
     }
+
     categoryService.searchCategory(id, function (res) {
         $scope.actualCategory = res;
     });
@@ -127,5 +138,25 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
 notizblogApp.controller('allArticlesCtrl', function ($scope, articleService) {
     articleService.allArticles(function (res) {
         $scope.articles = res;
+    });
+});
+
+notizblogApp.controller('articleByIdCtrl', function ($scope, $q, articleService) {
+    var params = window.location.search.substring(1);
+    params = params.split('&');
+    for (var i in params) {
+        var string = params[i];
+        if (string.search(/^id/) != -1) {
+            var id = string.substring(string.indexOf("=") + 1);
+            break;
+        }
+    }
+
+    var deferred = $q.defer();
+    $scope.articleInitialized = deferred.promise;
+
+    articleService.searchArticle(id, function (res) {
+        $scope.actualArticle = res;
+        deferred.resolve();
     });
 });

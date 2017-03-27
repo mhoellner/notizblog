@@ -32,8 +32,13 @@ app.get('/newArticle', function (req, res) {
 });
 
 app.get('/articlesOverview', function (req, res) {
-    console.log('Requested /articles');
+    console.log('Requested /articleOverview');
     res.sendfile('public/articlesOverview.html');
+});
+
+app.get('/article', function (req, res) {
+    console.log('Requested /article');
+    res.sendfile('public/article.html');
 });
 
 app.get('/search', function (req, res) {
@@ -44,6 +49,20 @@ app.get('/search', function (req, res) {
 app.get('/impressum', function (req, res) {
     console.log('Requested /impressum');
     res.status(404).sendfile('public/404.html');
+});
+
+app.post('/getUser', function (req, res) {
+    console.log('Get user with name ' + req.body.name);
+    var users = jsonFile.readFileSync(userFile);
+    for (var u in users) {
+        var user = users[u];
+        if (user.name == req.body.name) {
+            res.send(user);
+            return;
+        }
+    }
+
+    console.log('User with name ' + req.body.name + ' not found');
 });
 
 app.post('/login/login', function (req, res) {
@@ -114,7 +133,7 @@ app.post('/newArticle', function (req, res) {
         var base64data = req.body.picture.replace(/^data:image\/png;base64,/, "");
         var imageFilePath = 'data/img/article-' + newID + '.png';
         fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
-            if (err){
+            if (err) {
                 console.log(err);
             }
         });
@@ -144,8 +163,8 @@ function adjustArticleCounter(categoryID, increment) {
     var categories = jsonFile.readFileSync(categoryFile);
     for (var c in categories) {
         var category = categories[c];
-        if (category.id == categoryID){
-            if (increment){
+        if (category.id == categoryID) {
+            if (increment) {
                 category.amount = category.amount + 1;
             } else {
                 category.amount = category.amount - 1;

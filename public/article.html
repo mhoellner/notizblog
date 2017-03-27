@@ -10,91 +10,98 @@
     <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
 </head>
 <body>
-<div class="container">
-    <nb:header></nb:header>
-    <ol class="breadcrumb">
-        <li><a href="/">notizblog</a></li>
-        <li class="active">Beiträge</li>
-    </ol>
-    <div class="row">
-        <div class="col-md-3">
-            <nb:menu></nb:menu>
-        </div>
-        <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <img src="{{article.picture}}" class="img-responsive"/>
-                    <br/>
-                    <div class="row">
-                        <div class="col-md-9">
-                            <h2>{{article.content.title}}</h2>
-                            Autor: {{article.author}}
-                            (<a href="mailto:{{user.mail}}"><i>{{user.mail}}</i></a>)
+<div class="container" ng-controller="articleByIdCtrl" ng-model="actualArticle">
+    <div ng-controller="categoryByIdCtrl" ng-model="actualCategory">
+        <nb:header></nb:header>
+        <ol class="breadcrumb">
+            <li><a href="/">notizblog</a></li>
+            <li><a href="/articlesOverview?category={{actualCategory.id}}">{{actualCategory.title}}</a></li>
+            <li class="active">{{actualArticle.content.title}}</li>
+        </ol>
+        <div class="row">
+            <div class="col-md-3">
+                <nb:menu></nb:menu>
+            </div>
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-body" ng-controller="userCtrl">
+                        <img src="{{actualArticle.picture}}" class="img-responsive"/>
+                        <br/>
+                        <div class="row">
+                            <div class="col-md-9">
+                                <h2>{{actualArticle.content.title}}</h2>
+                                Autor: {{actualArticle.author}}
+                                (<a href="mailto:{{user.mail}}"><i>{{user.mail}}</i></a>)
+                            </div>
+                            <div class="col-md-3 text-right">
+                                <span class="label label-primary">{{actualArticle.date | date: 'dd.MM.yyyy'}}</span>
+                            </div>
                         </div>
-                        <div class="col-md-3 text-right">
-                            <span class="label label-primary">{{article.date | date: 'dd.MM.yyyy'}}</span>
+                        <hr>
+                        <div class="row">
+                            <div class="col-md-12">
+                                {{actualArticle.content.text}}
+                            </div>
                         </div>
-                    </div>
-                    <hr>
-                    <div class="row">
-                        <div class="col-md-12">
-                            {{article.content.text}}
-                        </div>
-                    </div>
-                    <hr>
+                        <hr>
 
-                    <!-- Kommentare -->
-                    <a id="loadComments">Kommentare laden</a>
-                    <ul id="comments" class="media-list">
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Überschrift</h4>
-                                <p>Dies ist ein Kommentar.<br/>Test</p>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Re: Überschrift</h4>
-                                        <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch Antworten
-                                            möglich sind.</p>
+                        <!-- Kommentare -->
+                        <a id="loadComments">Kommentare laden</a>
+                        <ul id="comments" class="media-list">
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
+                                             width="64px">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Überschrift</h4>
+                                    <p>Dies ist ein Kommentar.<br/>Test</p>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
+                                                     width="64px">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Re: Überschrift</h4>
+                                            <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch
+                                                Antworten
+                                                möglich sind.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="media">
-                            <div class="media-left">
-                                <a href="#">
-                                    <img class="media-object" src="img/moon.jpg" alt="..." height="64px" width="64px">
-                                </a>
-                            </div>
-                            <div class="media-body">
-                                <h4 class="media-heading">Überschrift</h4>
-                                <p>Dies ist ein Kommentar.<br/>Test</p>
-                                <div class="media">
-                                    <div class="media-left">
-                                        <a href="#">
-                                            <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                                 width="64px">
-                                        </a>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4 class="media-heading">Re: Überschrift</h4>
-                                        <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch Antworten
-                                            möglich sind.</p>
+                            </li>
+                            <li class="media">
+                                <div class="media-left">
+                                    <a href="#">
+                                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
+                                             width="64px">
+                                    </a>
+                                </div>
+                                <div class="media-body">
+                                    <h4 class="media-heading">Überschrift</h4>
+                                    <p>Dies ist ein Kommentar.<br/>Test</p>
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <a href="#">
+                                                <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
+                                                     width="64px">
+                                            </a>
+                                        </div>
+                                        <div class="media-body">
+                                            <h4 class="media-heading">Re: Überschrift</h4>
+                                            <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch
+                                                Antworten
+                                                möglich sind.</p>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>

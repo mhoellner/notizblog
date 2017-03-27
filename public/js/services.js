@@ -16,9 +16,11 @@ notizblogApp.service('userService', function ($http, $cookies) {
                 }
             });
     };
+
     self.logout = function () {
         $cookies.remove('nbUser');
     };
+
     self.register = function (user, callback) {
         $http.post('/login/register', user)
             .then(function (res) {
@@ -36,6 +38,14 @@ notizblogApp.service('userService', function ($http, $cookies) {
                     // account with email exists
                     callback(res.data)
                 }
+            });
+    };
+
+    // gives the user with the given name
+    self.searchUserByName = function (name, callback) {
+        $http.post('/getUser', {"name": name})
+            .then(function (res) {
+                callback(res.data);
             });
     };
 });
