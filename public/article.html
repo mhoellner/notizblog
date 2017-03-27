@@ -11,7 +11,7 @@
 </head>
 <body>
 <div class="container" ng-controller="articleByIdCtrl" ng-model="actualArticle">
-    <div ng-controller="categoryByIdCtrl" ng-model="actualCategory">
+    <div ng-controller="categoryFromArticleCtrl" ng-model="actualCategory">
         <nb:header></nb:header>
         <ol class="breadcrumb">
             <li><a href="/">notizblog</a></li>
@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-body" ng-controller="userCtrl">
+                    <div class="panel-body" ng-controller="userFromArticleCtrl">
                         <img src="{{actualArticle.picture}}" class="img-responsive"/>
                         <br/>
                         <div class="row">

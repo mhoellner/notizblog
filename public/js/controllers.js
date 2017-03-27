@@ -12,7 +12,7 @@ notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {
     $scope.username = $cookies.get('nbUser');
 });
 
-notizblogApp.controller('userCtrl', function ($scope, userService) {
+notizblogApp.controller('userFromArticleCtrl', function ($scope, userService) {
     $scope.articleInitialized
         .then(function (resolved) {
             var user = $scope.actualArticle.author;
@@ -98,6 +98,16 @@ notizblogApp.controller('categoryByIdCtrl', function ($scope, categoryService) {
     categoryService.searchCategory(id, function (res) {
         $scope.actualCategory = res;
     });
+});
+
+notizblogApp.controller('categoryFromArticleCtrl', function ($scope, categoryService) {
+    $scope.articleInitialized
+        .then(function (resolved) {
+            var id = $scope.actualArticle.content.category;
+            categoryService.searchCategory(id, function (res) {
+                $scope.actualCategory = res;
+            });
+        });
 });
 
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
