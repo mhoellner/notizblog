@@ -45,13 +45,22 @@
                                     Autor: {{article.author}}
                                 </div>
                                 <div class="col-md-3 text-right" ng-controller="articleManagementCtrl">
-                                    <button class="btn" ng-click="UpdateArticle()"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                                    <button class="btn" ng-click="DeleteArticle()"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
+                                    <button class="btn" ng-click="UpdateArticle()"><i class="fa fa-pencil"
+                                                                                      aria-hidden="true"></i></button>
+                                    <button class="btn" ng-click="DeleteArticle()"><i class="fa fa-trash-o"
+                                                                                      aria-hidden="true"></i></button>
                                     <span class="label label-primary">{{article.date | date: 'dd.MM.yyyy'}}</span>
                                 </div>
                             </div>
-                            <img ng-src="{{article.picture}}" class="img-responsive"/>
-                            <hr>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3">
+                                    <img ng-src="{{article.picture}}" alt="" class="img-rounded img-responsive"/>
+                                </div>
+                                <div class="col-md-9 col-lg-9">
+                                    {{article.content.text}}
+                                </div>
+                            </div>
                         </div>
                         <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>
                     </div>
