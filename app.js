@@ -55,11 +55,11 @@ app.get('/impressum', function (req, res) {
 });
 
 app.post('/getUser', function (req, res) {
-    console.log('Get user with name ' + req.body.name);
     var users = jsonFile.readFileSync(userFile);
     for (var u in users) {
         var user = users[u];
         if (user.name == req.body.name) {
+            user.password = "This is not the password you are looking for.";
             res.send(user);
             return;
         }
