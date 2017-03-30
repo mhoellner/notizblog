@@ -43,7 +43,7 @@
                                     <img ng-src="{{article.picture}}" alt="" class="img-rounded img-responsive"/>
                                 </div>
                                 <div class="col-md-9 col-lg-9">
-                                    {{article.content.text}}
+                                    {{article.content.text | limitTo:280 }}...
                                 </div>
                             </div>
                         </div>
