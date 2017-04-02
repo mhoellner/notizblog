@@ -13,10 +13,6 @@ notizblogApp.controller('navbarCtrl', function ($scope, $cookies) {
             return true;
         }
     }
-
-    $(".nav").find(".active").removeClass("active");
-    var active = window.location.pathname + window.location.search;
-    $('.a[href="' + active + '"]').parent().addClass("active");
 });
 
 notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {
