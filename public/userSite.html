@@ -39,9 +39,12 @@
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:username} as filtered">
                             <div id="articleTeaser-{{article.id}}">
                                 <nb:articleteaser article="article"></nb:articleteaser>
-                                <div class="text-right" ng-controller="articleManagementCtrl">
-                                    <button class="btn" ng-click="updateArticle()"><i class="fa fa-pencil"
-                                                                                      aria-hidden="true"></i></button>
+                                <div class="text-right" ng-controller="articleDeleteCtrl">
+                                    <a class="no-link" href="/updateArticle?id={{ article.id }}">
+                                        <button class="btn"><i
+                                                class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </a>
                                     <button class="btn" ng-click="deleteArticle()"><i class="fa fa-trash-o"
                                                                                       aria-hidden="true"></i></button>
                                 </div>

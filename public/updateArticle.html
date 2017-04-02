@@ -27,45 +27,48 @@
                 <div class="panel-body">
                     <h4>Aktualisiere deinen Blogeintrag</h4>
                     <br/>
-                    <form ng-submit="UpdateArticle()" ng-controller="articleManagementCtrl">
-                        <div class="form-group row">
-                            <label for="input-titel" class="col-md-2 col-form-label">Titel</label>
-                            <div class="col-md-10">
-                                <input type="text" class="form-control" id="input-titel" ng-model="article.title"
-                                       required>
+                    <div ng-controller="articleByIdCtrl" ng-model="actualArticle">
+                        <form ng-submit="updateArticle()" ng-controller="articleUpdateCtrl">
+                            <div class="form-group row">
+                                <label for="input-titel" class="col-md-2 col-form-label">Titel</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="form-control" id="input-titel" ng-model="article.title"
+                                           required>
+                                </div>
                             </div>
-                        </div>
-                        <br/>
-                        <div class="form-group row">
-                            <label for="input-picture" class="col-md-2 col-form-label">Titelbild</label>
-                            <div class="col-md-10">
-                                <input type="file" id="input-picture" accept=".jpg,.png,.jpeg" size="10MB">
+                            <br/>
+                            <div class="form-group row">
+                                <label for="input-picture" class="col-md-2 col-form-label">Titelbild</label>
+                                <div class="col-md-10">
+                                    <input type="file" id="input-picture" accept=".jpg,.png,.jpeg" size="10MB">
+                                </div>
                             </div>
-                        </div>
-                        <br/>
-                        <div class="form-group row">
-                            <label for="input-category" class="col-md-2 col-form-label">Kategorie</label>
-                            <div class="col-md-10" ng-controller="allCategoriesCtrl" ng-model="categories">
-                                <select class="form-control" id="input-category" ng-model="article.category" required>
-                                    <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.title}}</option>
-                                </select>
+                            <br/>
+                            <div class="form-group row">
+                                <label for="input-category" class="col-md-2 col-form-label">Kategorie</label>
+                                <div class="col-md-10" ng-controller="allCategoriesCtrl" ng-model="categories">
+                                    <select class="form-control" id="input-category" ng-model="article.category"
+                                            required>
+                                        <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.title}}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <br/>
-                        <div class="form-group row">
-                            <label for="input-text" class="col-md-2 col-form-label">Text</label>
-                            <div class="col-md-10">
-                                <textarea class="form-control" id="input-text" ng-model="article.text"
-                                          required></textarea>
+                            <br/>
+                            <div class="form-group row">
+                                <label for="input-text" class="col-md-2 col-form-label">Text</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control" id="input-text" ng-model="article.text"
+                                              required></textarea>
+                                </div>
                             </div>
-                        </div>
-                        <br/>
-                        <center>
-                            <button class="btn btn-info" type="submit">
-                                <i class="fa fa-check-square-o" aria-hidden="true"></i>
-                                Speichern
-                            </button>
-                        </center>
+                            <br/>
+                            <center>
+                                <button class="btn btn-info" type="submit">
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                                    Speichern
+                                </button>
+                            </center>
+                    </div>
                     </form>
                 </div>
             </div>

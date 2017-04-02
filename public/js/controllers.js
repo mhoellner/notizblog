@@ -120,31 +120,26 @@ notizblogApp.controller('categoryFromArticleCtrl', function ($scope, categorySer
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     if ($cookies.get('nbUser') != null) {
         $scope.saveArticle = function () {
+            var fileData = readFileData(); // Ergebnis vom FileReader auslesen
+            console.log(fileData);
 
-            var picture = document.getElementById('input-picture').files[0];
-            var reader = new FileReader(); // HTML5 File Reader
-            reader.readAsDataURL(picture);
-            reader.onload = function (theFileData) {
-                var fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
-
-                var jsonData = {
-                    "content": $scope.article,
-                    "picture": fileData,
-                    "author": $cookies.get('nbUser')
-                };
-
-                $http.post('/newArticle', jsonData)
-                    .then(function (res) {
-                        if (res.status == 200) {
-                            window.location = '/userSite';
-                        } else if (res.status == 403) {
-                            window.location = '/login';
-                        } else {
-                            alert('Ein Fehler ist aufgetreten.');
-                        }
-                    });
-
+            var jsonData = {
+                "content": $scope.article,
+                "picture": fileData,
+                "author": $cookies.get('nbUser')
             };
+
+            $http.post('/newArticle', jsonData)
+                .then(function (res) {
+                    if (res.status == 200) {
+                        //window.location = '/userSite';
+                    }
+                }, function (res) {
+                    if (res.status == 403) {
+                        // window.location = '/login';
+                    }
+                });
+
         };
     } else {
         // Der Nutzer ist nicht korrekt eingeloggt
@@ -152,10 +147,58 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
     }
 });
 
-notizblogApp.controller('articleManagementCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.updateArticle = function () {
+notizblogApp.controller('articleUpdateCtrl', function ($scope, $http, $cookies) {
+    $scope.articleInitialized
+        .then(function (resolved) {
+            if ($cookies.get('nbUser') != null && $cookies.get('nbUser') == $scope.actualArticle.author) {
+                $scope.article = {
+                    title: $scope.actualArticle.content.title,
+                    category: $scope.actualArticle.content.category,
+                    text: $scope.actualArticle.content.text
+                };
+            } else {
+                // Der Nutzer ist nicht korrekt eingeloggt
+                window.location = '/login';
+            }
+        });
 
+    $scope.updateArticle = function () {
+        var fileData = readFileData(); // Ergebnis vom FileReader auslesen
+
+        var jsonData = {
+            "id": $scope.actualArticle.id,
+            "content": $scope.article,
+            "picture": fileData,
+            "author": $cookies.get('nbUser')
+        };
+
+        $http.post('/updateArticle', jsonData)
+            .then(function (res) {
+                if (res.status == 200) {
+                    window.location = '/userSite';
+                }
+            }, function (res) {
+                if (res.status == 403) {
+                    window.location = '/login';
+                }
+            });
     };
+});
+
+function readFileData() {
+    var picture = document.getElementById('input-picture').files[0];
+    if (picture != null) {
+        var reader = new FileReader(); // HTML5 File Reader
+        reader.readAsDataURL(picture);
+        reader.onload = function (theFileData) {
+            return theFileData.target.result; // Ergebnis vom FileReader auslesen
+        }
+    } else {
+        return null;
+    }
+};
+
+notizblogApp.controller('articleDeleteCtrl', ['$scope', '$http', function ($scope, $http) {
     $scope.deleteArticle = function () {
         var canBeDeleted = confirm('Bist du dir sicher, dass du diesen Artikel löschen möchtest?\n\nEs gibt kein Zurück!');
         if (canBeDeleted) {
