@@ -1,11 +1,22 @@
-notizblogApp.controller('navbarCtrl', function ($scope, $cookies, categoryService) {
+notizblogApp.controller('navbarCtrl', function ($scope, $cookies) {
     // show different things in menu if the user is logged in
     var user = $cookies.get('nbUser');
     if (user != null) {
-        document.getElementById('loginNav').style.display = 'none';
+        $('#loginNav').hide();
     } else {
-        document.getElementById('userNav').style.display = 'none';
+        $('#userNav').hide();
     }
+
+    $scope.isActive = function (string) {
+        var activePath = window.location.pathname + window.location.search;
+        if (string == activePath) {
+            return true;
+        }
+    }
+
+    $(".nav").find(".active").removeClass("active");
+    var active = window.location.pathname + window.location.search;
+    $('.a[href="' + active + '"]').parent().addClass("active");
 });
 
 notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {

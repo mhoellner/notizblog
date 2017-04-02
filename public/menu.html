@@ -1,13 +1,16 @@
 <div ng-controller="allCategoriesCtrl">
     <ul ng-controller="navbarCtrl" class="nav nav-pills nav-stacked nb-menu">
-        <li id="loginNav" role="presentation"><a href="/login">Login</a></li>
-        <li id="userNav" role="presentation"><a href="/userSite">Meine Beitr&auml;ge</a></li>
-        <li ng-repeat="category in categories|orderBy:'title'" role="presentation">
+        <li id="loginNav" role="presentation" ng-class="{ active: isActive('/login') }"><a href="/login">Login</a></li>
+        <li id="userNav" role="presentation" ng-class="{ active: isActive('/userSite') }">
+            <a href="/userSite">Meine Beitr&auml;ge</a>
+        </li>
+        <li ng-repeat="category in categories|orderBy:'title'" role="presentation"
+            ng-class="{ active: isActive('/articlesOverview?category={{ category.id }}') }">
             <a href="/articlesOverview?category={{ category.id }}">
                 {{ category.title }} <span class="badge">{{ category.amount }}</span>
             </a>
         </li>
-        <li role="presentation"><a href="/search">Suche</a></li>
-        <li role="presentation"><a href="/impressum">Impressum</a></li>
+        <li role="presentation" ng-class="{ active: isActive('/search') }"><a href="/search">Suche</a></li>
+        <li role="presentation" ng-class="{ active: isActive('/impressum') }"><a href="/impressum">Impressum</a></li>
     </ul>
 </div>
