@@ -134,8 +134,6 @@ app.post('/newArticle', function (req, res) {
         var articles = jsonFile.readFileSync(articleFile);
         var newID = generateId(articles);
 
-        //TODO: Verify file before saving
-
         var today = new Date();
 
         if (req.body.picture != null) {
@@ -187,8 +185,6 @@ app.post('/updateArticle', function (req, res) {
             adjustArticleCounter(updatedArticle.content.category, false);
         }
 
-        //TODO: Verify file before saving
-
         var today = new Date();
 
         if (req.body.picture != null) {
@@ -237,13 +233,27 @@ app.post('/deleteArticle', function (req, res) {
 });
 
 function savePicture(pic, articleID) {
-    var base64data = pic.replace(/^data:image\/png;base64,/, "");
-    var imageFilePath = 'data/img/article-' + articleID + '.png';
-    fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
-        if (err) {
-            console.log(err);
-        }
-    });
+    var regPNG = /^data:image\/png;base64,/;
+    var regJPG = /^data:image\/jpeg;base64,/;
+    var base64data = null;
+    var imageFilePath = '';
+    if (pic.match(regPNG)) { //if its a .png
+        base64data = pic.replace(regPNG, "");
+        imageFilePath = 'data/img/article-' + articleID + '.png';
+        fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+    } else if (pic.match(regJPG)){ //if it's a .jpg
+        base64data = pic.replace(regJPG, "");
+        imageFilePath = 'data/img/article-' + articleID + '.jpg';
+        fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
+            if (err) {
+                console.log(err);
+            }
+        });
+    }
     return imageFilePath;
 }
 
