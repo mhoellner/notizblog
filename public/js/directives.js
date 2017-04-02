@@ -15,3 +15,14 @@ notizblogApp.directive('nbMenu', function factory() {
         restrict: 'E'
     }
 });
+
+notizblogApp.directive('nbArticleteaser', function factory() {
+    return {
+        priority: 0,
+        scope: {
+            article: '='
+        },
+        templateUrl: 'articleTeaser.html',
+        restrict: 'EA'
+    }
+});
