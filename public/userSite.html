@@ -3,6 +3,7 @@
     <title>
         Meine Beiträge | notizblog
     </title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/font-awesome.css" rel="stylesheet"/>
@@ -36,15 +37,17 @@
                     Klicke auf einen Beitrag, um ihn zu ändern oder zu löschen.
                     <div ng-controller="allArticlesCtrl">
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:username} as filtered">
-                            <nb:articleteaser article="article"></nb:articleteaser>
-                            <div class="text-right" ng-controller="articleDeleteCtrl">
-                                <a class="no-link" href="/updateArticle?id={{ article.id }}">
-                                    <button class="btn"><i
-                                            class="fa fa-pencil"
-                                            aria-hidden="true"></i></button>
-                                </a>
-                                <button class="btn" ng-click="deleteArticle()"><i class="fa fa-trash-o"
-                                                                                  aria-hidden="true"></i></button>
+                            <div id="articleTeaser-{{article.id}}">
+                                <nb:articleteaser article="article"></nb:articleteaser>
+                                <div class="text-right" ng-controller="articleDeleteCtrl">
+                                    <a class="no-link" href="/updateArticle?id={{ article.id }}">
+                                        <button class="btn"><i
+                                                class="fa fa-pencil"
+                                                aria-hidden="true"></i></button>
+                                    </a>
+                                    <button class="btn" ng-click="deleteArticle()"><i class="fa fa-trash-o"
+                                                                                      aria-hidden="true"></i></button>
+                                </div>
                             </div>
                         </div>
                         <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>

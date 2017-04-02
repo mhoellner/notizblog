@@ -3,6 +3,7 @@
     <title>
         Neuer Beitrag | notizblog
     </title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/font-awesome.css" rel="stylesheet"/>
@@ -56,6 +57,14 @@
                             <div class="col-md-10">
                                 <textarea class="form-control" id="input-text" ng-model="article.text"
                                           required></textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="input-copyright" class="col-md-2 col-form-label">Copyright</label>
+                            <div class="col-md-10">
+                                <input type="checkbox" id="input-copyright" required> Der Text und ggf. das Bild sind mein geistiges Eigentum bzw. ich habe das Recht diesen zu verbreiten.
+                                Ich erteile <b>notizblog</b> das Recht, es zu verwenden.
                             </div>
                         </div>
                         <br/>

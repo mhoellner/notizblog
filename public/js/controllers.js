@@ -232,7 +232,14 @@ notizblogApp.controller('articleDeleteCtrl', ['$scope', '$http', function ($scop
             };
             $http.post('/deleteArticle', param)
                 .then(function (res) {
-                    window.location = '/userSite';
+                    if (res.status == 200) {
+                        $('#articleTeaser-' + res.data[0].id)
+                            .html('<hr><div class="alert alert-warning" role="alert">' +
+                                'Der Artikel <b>' + res.data[0].content.title + '</b> wurde erfolgreich gelöscht.' +
+                                '</div>');
+                    } else if (res.status == 401) {
+                        alert('Du hast nicht das Recht diesen Artikel zu löschen.');
+                    }
                 });
         } else {
 
