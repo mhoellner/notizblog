@@ -56,7 +56,7 @@ app.get('/search', function (req, res) {
 
 app.get('/impressum', function (req, res) {
     console.log('Requested /impressum');
-    res.status(404).sendFile('public/404.html', {root: __dirname});
+    res.sendFile('public/imprint.html', {root: __dirname});
 });
 
 app.post('/getUser', function (req, res) {
@@ -221,8 +221,8 @@ app.post('/deleteArticle', function (req, res) {
     console.log('Trying to delete article');
     var articles = jsonFile.readFileSync(articleFile);
     for (a in articles) {
-        if (articles[a].id == req.body.articleID){
-            if (articles[a].author == req.body.author){
+        if (articles[a].id == req.body.articleID) {
+            if (articles[a].author == req.body.author) {
                 var removedArticle = articles.splice(a, 1);
                 jsonFile.writeFileSync(articleFile, articles, indent);
                 res.status(200).send(removedArticle);
