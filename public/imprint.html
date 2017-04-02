@@ -1,0 +1,50 @@
+<html ng-app="notizblogApp">
+<head>
+    <title>
+        Beitrag ändern | notizblog
+    </title>
+    <link rel="shortcut icon" type="image/png" href="img/favicon.png">
+    <meta charset="UTF-8"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/notizblog.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <nb:header></nb:header>
+    <ol class="breadcrumb">
+        <li><a href="/">notizblog</a></li>
+        <li><a href="/userSite">Meine Beiträge</a></li>
+        <li class="active">Beitrag ändern</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <nb:menu></nb:menu>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Impressum</h3>
+                    <p>Nach §5 TMG müsste hier jede Menge Zeug über uns stehen.</p>
+                    <p>Hier alle Informationen, die für ein Projekt an der Hochschule benötigt werden:</p>
+                    <p><b>Milan Höllner</b>, <a href="mailto:s_hoellner@stud.hwr-berlin.de">s_hoellner@stud.hwr-berlin.de</a>
+                    </p>
+                    <p><b>Elen Niedermeyer</b>, <a href="mailto:s_niedermeyer@stud.hwr-berlin.de">s_niedermeyer@stud.hwr-berlin.de</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
+<script src="js/module.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+
+<script src="js/notizblog.js"></script>
+</body>
+</html>
