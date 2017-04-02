@@ -1,0 +1,64 @@
+<html ng-app="notizblogApp">
+<head>
+    <title>
+        Suche | notizblog
+    </title>
+    <meta charset="UTF-8"/>
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/font-awesome.css" rel="stylesheet"/>
+    <link href="css/notizblog.css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css?family=Sansita" rel="stylesheet"/>
+</head>
+<body>
+<div class="container">
+    <nb:header></nb:header>
+    <ol class="breadcrumb">
+        <li><a href="/">notizblog</a></li>
+        <li class="active">Suche</li>
+    </ol>
+    <div class="row">
+        <div class="col-md-3">
+            <nb:menu></nb:menu>
+        </div>
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="form-group col-md-4 col-lg-4">
+                            <label for="title-search" class="col-form-label">Titel</label>
+                            <input id="title-search" class="form-control" ng-model="searchTitle"
+                                   placeholder="Nach Titel suchen"/>
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4">
+                            <label for="author-search" class="col-form-label">Autor</label>
+                            <input id="author-search" class="form-control" ng-model="searchAuthor"
+                                   placeholder="Nach Autor suchen"/>
+                        </div>
+                        <div class="form-group col-md-4 col-lg-4">
+                            <label for="content-search" class="col-form-label">Inhalt</label>
+                            <input id="content-search" class="form-control" ng-model="searchContent"
+                                   placeholder="Nach Artikelinhalt suchen"/>
+                        </div>
+                    </div>
+                    <div ng-controller="allArticlesCtrl">
+                        <div ng-repeat="article in articles | orderBy: '-date' | filter: {content:{title:searchTitle}} | filter: {author:searchAuthor} | filter: {content:{text:searchContent}} as filtered">
+                            <nb:articleteaser article="article"></nb:articleteaser>
+                        </div>
+                        <div ng-if="!filtered.length">Keine Beiträge gefunden</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-3.1.1.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.9/angular-cookies.js"></script>
+<script src="js/module.js"></script>
+<script src="js/services.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/directives.js"></script>
+
+<script src="js/notizblog.js"></script>
+</body>
+</html>

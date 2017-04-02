@@ -46,7 +46,7 @@ app.get('/article', function (req, res) {
 
 app.get('/search', function (req, res) {
     console.log('Requested /search');
-    res.status(404).sendfile('public/404.html');
+    res.sendfile('public/search.html');
 });
 
 app.get('/impressum', function (req, res) {
