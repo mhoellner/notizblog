@@ -36,12 +36,14 @@
                     Klicke auf einen Beitrag, um ihn zu ändern oder zu löschen.
                     <div ng-controller="allArticlesCtrl">
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:username} as filtered">
-                            <nb:articleteaser article="article"></nb:articleteaser>
-                            <div class="text-right" ng-controller="articleManagementCtrl">
-                                <button class="btn" ng-click="UpdateArticle()"><i class="fa fa-pencil"
-                                                                                  aria-hidden="true"></i></button>
-                                <button class="btn" ng-click="DeleteArticle()"><i class="fa fa-trash-o"
-                                                                                  aria-hidden="true"></i></button>
+                            <div id="articleTeaser-{{article.id}}">
+                                <nb:articleteaser article="article"></nb:articleteaser>
+                                <div class="text-right" ng-controller="articleManagementCtrl">
+                                    <button class="btn" ng-click="updateArticle()"><i class="fa fa-pencil"
+                                                                                      aria-hidden="true"></i></button>
+                                    <button class="btn" ng-click="deleteArticle()"><i class="fa fa-trash-o"
+                                                                                      aria-hidden="true"></i></button>
+                                </div>
                             </div>
                         </div>
                         <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>

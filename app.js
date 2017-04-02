@@ -169,11 +169,17 @@ app.post('/deleteArticle', function (req, res) {
     console.log('Trying to delete article');
     var articles = jsonFile.readFileSync(articleFile);
     for (a in articles) {
-        if (articles[a].id == req.body.articleID && articles[a].author == req.body.author) {
-            articles.splice(a, 1);
-            jsonFile.writeFileSync(articleFile, articles, indent);
-            res.sendStatus(200);
-            console.log('Deleted Article ' + req.body.articleID);
+        if (articles[a].id == req.body.articleID){
+            console.log(articles[a].content.title);
+            if (articles[a].author == req.body.author){
+                var removedArticle = articles.splice(a, 1);
+                jsonFile.writeFileSync(articleFile, articles, indent);
+                res.status(200).send(removedArticle);
+                console.log('Deleted Article ' + req.body.articleID);
+            } else {
+                res.sendStatus(401);
+                console.log(req.body.author + ' tried to delete article ' + req.body.articleID + ' but isn\'t the author.');
+            }
         }
     }
 });

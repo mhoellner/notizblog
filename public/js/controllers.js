@@ -153,10 +153,10 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies) {
 });
 
 notizblogApp.controller('articleManagementCtrl', ['$scope', '$http', function ($scope, $http) {
-    $scope.UpdateArticle = function () {
+    $scope.updateArticle = function () {
 
     };
-    $scope.DeleteArticle = function () {
+    $scope.deleteArticle = function () {
         var canBeDeleted = confirm('Bist du dir sicher, dass du diesen Artikel löschen möchtest?\n\nEs gibt kein Zurück!');
         if (canBeDeleted) {
             var param = {
@@ -165,7 +165,14 @@ notizblogApp.controller('articleManagementCtrl', ['$scope', '$http', function ($
             };
             $http.post('/deleteArticle', param)
                 .then(function (res) {
-                    window.location = '/userSite';
+                    if (res.status == 200) {
+                        $('#articleTeaser-' + res.data[0].id)
+                            .html('<hr><div class="alert alert-warning" role="alert">' +
+                                'Der Artikel <b>' + res.data[0].content.title + '</b> wurde erfolgreich gelöscht.' +
+                                '</div>');
+                    } else if (res.status == 401) {
+                        alert('Du hast nicht das Recht diesen Artikel zu löschen.');
+                    }
                 });
         } else {
 
