@@ -137,13 +137,12 @@ app.post('/newArticle', function (req, res) {
         //TODO: Verify file before saving
 
         var today = new Date();
-        var base64data = req.body.picture.replace(/^data:image\/png;base64,/, "");
-        var imageFilePath = 'data/img/article-' + newID + '.png';
-        fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
-            if (err) {
-                console.log(err);
-            }
-        });
+
+        if (req.body.picture != null) {
+            var imageFilePath = savePicture(req.body.picture, newID);
+        } else {
+            var imageFilePath = '';
+        }
 
         var newArticle = {
             id: newID,
@@ -165,6 +164,59 @@ app.post('/newArticle', function (req, res) {
     }
 });
 
+app.post('/updateArticle', function (req, res) {
+    console.log('Try to update article');
+
+    var articles = jsonFile.readFileSync(articleFile);
+    var updatedArticle;
+
+    for (var a in articles) {
+        var article = articles[a];
+        if (article.id == req.body.id) {
+            updatedArticle = article;
+            articles.splice(a, 1);
+            break;
+        }
+    }
+
+    if (req.body.author != '' && req.body.author == updatedArticle.author) {
+        console.log('User ' + req.body.author + ' updated a new blog entry.');
+
+        if (req.body.content.category != updatedArticle.content.category) {
+            adjustArticleCounter(req.body.content.category, true);
+            adjustArticleCounter(updatedArticle.content.category, false);
+        }
+
+        //TODO: Verify file before saving
+
+        var today = new Date();
+
+        if (req.body.picture != null) {
+            var imageFilePath = savePicture(req.body.picture, updatedArticle.id);
+        } else {
+            var imageFilePath = '';
+        }
+
+        var newArticle = {
+            id: updatedArticle.id,
+            author: updatedArticle.author,
+            content: req.body.content,
+            date: today,
+            picture: imageFilePath
+        };
+
+        articles.push(newArticle);
+
+        jsonFile.writeFileSync(articleFile, articles, indent);
+
+        res.sendStatus(200);
+
+    } else {
+        console.log('Failure with author while updating article');
+        res.sendStatus(403);
+    }
+});
+
 app.post('/deleteArticle', function (req, res) {
     console.log('Trying to delete article');
     var articles = jsonFile.readFileSync(articleFile);
@@ -178,9 +230,16 @@ app.post('/deleteArticle', function (req, res) {
     }
 });
 
-app.post('/updateArticle', function () {
-    console.log('Trying to update article');
-});
+function savePicture(pic, articleID) {
+    var base64data = pic.replace(/^data:image\/png;base64,/, "");
+    var imageFilePath = 'data/img/article-' + articleID + '.png';
+    fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {
+        if (err) {
+            console.log(err);
+        }
+    });
+    return imageFilePath;
+}
 
 function adjustArticleCounter(categoryID, increment) {
     var categories = jsonFile.readFileSync(categoryFile);
