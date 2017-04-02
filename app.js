@@ -194,7 +194,7 @@ app.post('/updateArticle', function (req, res) {
         if (req.body.picture != null) {
             var imageFilePath = savePicture(req.body.picture, updatedArticle.id);
         } else {
-            var imageFilePath = '';
+            var imageFilePath = updatedArticle.picture;
         }
 
         var newArticle = {
