@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Neuer Eintrag | notizblog
+        Neuer Beitrag | notizblog
     </title>
     <meta charset="UTF-8"/>
     <link href="css/bootstrap.css" rel="stylesheet"/>
@@ -44,7 +44,7 @@
                         <br/>
                         <div class="form-group row">
                             <label for="input-category" class="col-md-2 col-form-label">Kategorie</label>
-                            <div class="col-md-10" ng-controller="allCategoryCtrl" ng-model="categories">
+                            <div class="col-md-10" ng-controller="allCategoriesCtrl" ng-model="categories">
                                 <select class="form-control" id="input-category" ng-model="article.category" required>
                                     <option ng-repeat="cat in categories" value="{{cat.id}}">{{cat.title}}</option>
                                 </select>

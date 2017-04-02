@@ -16,42 +16,47 @@ var indent = {spaces: 2};
 
 app.get('/', function (req, res) {
     console.log('Requested home');
-    res.sendfile('public/index.html');
+    res.sendFile('public/index.html', {root: __dirname});
 });
 
 app.get('/login', function (req, res) {
     console.log('Requested /login');
-    res.sendfile('public/login.html');
+    res.sendFile('public/login.html', {root: __dirname});
 });
 
 app.get('/userSite', function (req, res) {
     console.log('Requested /userSite');
-    res.sendfile('public/userSite.html');
+    res.sendFile('public/userSite.html', {root: __dirname});
 });
 
 app.get('/newArticle', function (req, res) {
     console.log('Requested /newArticle');
-    res.sendfile('public/makeEntry.html');
+    res.sendFile('public/makeEntry.html', {root: __dirname});
+});
+
+app.get('/updateArticle', function (req, res) {
+    console.log('Requested /updateArticle');
+    res.sendFile('public/updateArticle.html', {root: __dirname});
 });
 
 app.get('/articlesOverview', function (req, res) {
     console.log('Requested /articleOverview');
-    res.sendfile('public/articlesOverview.html');
+    res.sendFile('public/articlesOverview.html', {root: __dirname});
 });
 
 app.get('/article', function (req, res) {
     console.log('Requested /article');
-    res.sendfile('public/article.html');
+    res.sendFile('public/article.html', {root: __dirname});
 });
 
 app.get('/search', function (req, res) {
     console.log('Requested /search');
-    res.sendfile('public/search.html');
+    res.sendFile('public/search.html', {root: __dirname});
 });
 
 app.get('/impressum', function (req, res) {
     console.log('Requested /impressum');
-    res.status(404).sendfile('public/404.html');
+    res.status(404).sendFile('public/404.html', {root: __dirname});
 });
 
 app.post('/getUser', function (req, res) {
