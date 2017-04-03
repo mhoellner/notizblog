@@ -284,6 +284,30 @@ notizblogApp.controller('articleDeleteCtrl', ['$scope', '$http', function ($scop
     };
 }]);
 
+// --- comment management ---
+
+notizblogApp.controller('commentFormCtrl', function ($scope, $cookies) {
+    $scope.addComment = function () {
+        var author = $cookies.get('nbUser');
+
+        var jsonData = {
+            "author": author,
+            "articleID": $scope.actualArticle.id,
+            "comment": $scope.commentText,
+            "ancestor": -1
+        };
+
+        var location = window.location;
+
+        $http.post('/addComment', jsonData)
+            .then(function (res) {
+                window.location = location;
+            })
+
+    }
+
+});
+
 // --- functions ---
 function getParamFromUrl(paramRegex) {
     var res = null;
