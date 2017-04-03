@@ -47,61 +47,12 @@
                         <hr>
 
                         <!-- Kommentare -->
-                        <a id="loadComments">Kommentare laden</a>
-                        <ul id="comments" class="media-list">
-                            <li class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                             width="64px">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Überschrift</h4>
-                                    <p>Dies ist ein Kommentar.<br/>Test</p>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                                     width="64px">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Re: Überschrift</h4>
-                                            <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch
-                                                Antworten
-                                                möglich sind.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="media">
-                                <div class="media-left">
-                                    <a href="#">
-                                        <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                             width="64px">
-                                    </a>
-                                </div>
-                                <div class="media-body">
-                                    <h4 class="media-heading">Überschrift</h4>
-                                    <p>Dies ist ein Kommentar.<br/>Test</p>
-                                    <div class="media">
-                                        <div class="media-left">
-                                            <a href="#">
-                                                <img class="media-object" src="img/moon.jpg" alt="..." height="64px"
-                                                     width="64px">
-                                            </a>
-                                        </div>
-                                        <div class="media-body">
-                                            <h4 class="media-heading">Re: Überschrift</h4>
-                                            <p>Ich wollte mit diesem zweiten Kommentar noch ergänzen, dass auch
-                                                Antworten
-                                                möglich sind.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
+                        <div ng-controller="allCommentsCtrl">
+                            <div ng-repeat="comment in comments | orderBy: '-date' | filter: {article:actualArticle.id} as filtered">
+                                <nb:comments comment="comment"></nb:comments>
+                            </div>
+                            <div ng-if="!filtered.length">Keine Kommentare</div>
+                        </div>
                     </div>
                 </div>
             </div>

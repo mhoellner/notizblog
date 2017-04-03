@@ -1,0 +1,18 @@
+[
+  {
+    "id": 0,
+    "article": 1,
+    "ancestor": -1,
+    "text": "Hi",
+    "author": "Elen Niedermeyer",
+    "date": "2017-04-03"
+  },
+  {
+    "id": 1,
+    "article": 1,
+    "ancestor": -1,
+    "text": "Hi",
+    "author": "Elen Niedermeyer",
+    "date": "2017-04-03"
+  }
+]

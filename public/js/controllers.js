@@ -84,6 +84,13 @@ notizblogApp.controller('categoryFromArticleCtrl', function ($scope, categorySer
         });
 });
 
+// comments controllers
+notizblogApp.controller('allCommentsCtrl', function ($scope, commentsService) {
+    commentsService.allComments(function (res) {
+        $scope.comments = res;
+    });
+});
+
 // --- user management ---
 
 notizblogApp.controller('loginCtrl', function ($scope, userService) {

@@ -103,3 +103,15 @@ notizblogApp.service('articleService', function ($http) {
             });
     };
 });
+
+notizblogApp.service('commentsService', function ($http) {
+    var self = this;
+
+    // gives all comments
+    self.allComments = function (callback) {
+        $http.get('data/comments.json')
+            .then(function (res) {
+                callback(res.data);
+            });
+    };
+});

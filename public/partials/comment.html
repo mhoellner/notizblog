@@ -1,0 +1,11 @@
+<div class="commentContainer">
+    <div class="row">
+        <div class="col-md-6">
+            {{comment.author}}
+        </div>
+        <div class="col-md-6 text-right">
+            Datum: {{comment.date | date: 'dd.MM.yyyy'}}
+        </div>
+    </div>
+    <p>{{comment.text}}</p>
+</div>

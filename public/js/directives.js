@@ -2,7 +2,7 @@ notizblogApp.directive('nbHeader', function factory() {
     return {
         priority: 0,
         scope: false,
-        templateUrl: 'header.html',
+        templateUrl: 'partials/header.html',
         restrict: 'E'
     }
 });
@@ -11,7 +11,7 @@ notizblogApp.directive('nbMenu', function factory() {
     return {
         priority: 0,
         scope: false,
-        templateUrl: 'menu.html',
+        templateUrl: 'partials/menu.html',
         restrict: 'E'
     }
 });
@@ -22,7 +22,18 @@ notizblogApp.directive('nbArticleteaser', function factory() {
         scope: {
             article: '='
         },
-        templateUrl: 'articleTeaser.html',
+        templateUrl: 'partials/articleTeaser.html',
+        restrict: 'EA'
+    }
+});
+
+notizblogApp.directive('nbComments', function factory() {
+    return {
+        priority: 0,
+        scope: {
+            comment: '='
+        },
+        templateUrl: 'partials/comment.html',
         restrict: 'EA'
     }
 });
