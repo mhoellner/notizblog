@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Meine Beiträge | notizblog
+        Meine Artikel | notizblog
     </title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
@@ -15,7 +15,7 @@
     <nb:header></nb:header>
     <ol class="breadcrumb">
         <li><a href="/">notizblog</a></li>
-        <li class="active">Meine Beiträge</li>
+        <li class="active">Meine Artikel</li>
     </ol>
     <div class="row">
         <div class="col-md-3 col-lg-3">
@@ -31,10 +31,9 @@
                         </button>
                     </div>
                     Hallo {{ username }}!<br>
-                    <a href="/newArticle">Hier</a> kannst du einen neuen Beitrag schreiben.
+                    <a href="/newArticle">Hier</a> kannst du einen neuen Artikel schreiben.
                     <hr>
-                    Deine Beiträge:
-                    Klicke auf einen Beitrag, um ihn zu ändern oder zu löschen.
+                    Deine Artikel:
                     <div ng-controller="allArticlesCtrl">
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {author:username} as filtered">
                             <div id="articleTeaser-{{article.id}}">
@@ -50,7 +49,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>
+                        <div ng-if="!filtered.length">Keine Artikel vorhanden</div>
                     </div>
                 </div>
             </div>

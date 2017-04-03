@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Beitrag ändern | notizblog
+        Artikel ändern | notizblog
     </title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
@@ -15,8 +15,8 @@
     <nb:header></nb:header>
     <ol class="breadcrumb">
         <li><a href="/">notizblog</a></li>
-        <li><a href="/userSite">Meine Beiträge</a></li>
-        <li class="active">Beitrag ändern</li>
+        <li><a href="/userSite">Meine Artikel</a></li>
+        <li class="active">Artikel ändern</li>
     </ol>
     <div class="row">
         <div class="col-md-3">
@@ -25,7 +25,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h4>Aktualisiere deinen Blogeintrag</h4>
+                    <h4>Aktualisiere deinen Artikel</h4>
                     <br/>
                     <div ng-controller="articleByIdCtrl" ng-model="actualArticle">
                         <form ng-submit="updateArticle()" ng-controller="articleUpdateCtrl">

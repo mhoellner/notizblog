@@ -1,3 +1,4 @@
+// --- modules ---
 var express = require('express');
 var jsonFile = require('jsonfile');
 var bodyParser = require('body-parser');
@@ -9,10 +10,13 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(express.static('public'));
 
+// --- global variables ---
 var userFile = 'data/users.json';
 var articleFile = 'public/data/articles.json';
 var categoryFile = 'public/data/categories.json';
 var indent = {spaces: 2};
+
+// --- get methods ---
 
 app.get('/', function (req, res) {
     console.log('Requested home');
@@ -22,21 +26,6 @@ app.get('/', function (req, res) {
 app.get('/login', function (req, res) {
     console.log('Requested /login');
     res.sendFile('public/login.html', {root: __dirname});
-});
-
-app.get('/userSite', function (req, res) {
-    console.log('Requested /userSite');
-    res.sendFile('public/userSite.html', {root: __dirname});
-});
-
-app.get('/newArticle', function (req, res) {
-    console.log('Requested /newArticle');
-    res.sendFile('public/makeEntry.html', {root: __dirname});
-});
-
-app.get('/updateArticle', function (req, res) {
-    console.log('Requested /updateArticle');
-    res.sendFile('public/updateArticle.html', {root: __dirname});
 });
 
 app.get('/articlesOverview', function (req, res) {
@@ -54,11 +43,28 @@ app.get('/search', function (req, res) {
     res.sendFile('public/search.html', {root: __dirname});
 });
 
-app.get('/impressum', function (req, res) {
-    console.log('Requested /impressum');
+app.get('/imprint', function (req, res) {
+    console.log('Requested /imprint');
     res.sendFile('public/imprint.html', {root: __dirname});
 });
 
+app.get('/userSite', function (req, res) {
+    console.log('Requested /userSite');
+    res.sendFile('public/userSite.html', {root: __dirname});
+});
+
+app.get('/newArticle', function (req, res) {
+    console.log('Requested /newArticle');
+    res.sendFile('public/makeEntry.html', {root: __dirname});
+});
+
+app.get('/updateArticle', function (req, res) {
+    console.log('Requested /updateArticle');
+    res.sendFile('public/updateArticle.html', {root: __dirname});
+});
+
+// --- post methods ---
+// user management
 app.post('/getUser', function (req, res) {
     var users = jsonFile.readFileSync(userFile);
     for (var u in users) {
@@ -126,15 +132,15 @@ app.post('/login/register', function (req, res) {
     res.send("0");
 });
 
+// article management
 app.post('/newArticle', function (req, res) {
     console.log('Try to save new article');
     if (req.body.author != '') {
         console.log('User ' + req.body.author + ' saved a new blog entry.');
         //save article
         var articles = jsonFile.readFileSync(articleFile);
-        var newID = generateId(articles);
 
-        var today = new Date();
+        var newID = generateId(articles);
 
         if (req.body.picture != null) {
             var imageFilePath = savePicture(req.body.picture, newID);
@@ -142,6 +148,7 @@ app.post('/newArticle', function (req, res) {
             var imageFilePath = '';
         }
 
+        var today = new Date();
         var newArticle = {
             id: newID,
             author: req.body.author,
@@ -149,13 +156,13 @@ app.post('/newArticle', function (req, res) {
             date: today,
             picture: imageFilePath
         };
-        articles.push(newArticle);
 
+        articles.push(newArticle);
         jsonFile.writeFileSync(articleFile, articles, indent);
 
-        res.sendStatus(200);
         adjustArticleCounter(req.body.content.category, true);
 
+        res.sendStatus(200);
     } else {
         console.log('No author on POST-Request.');
         res.sendStatus(403);
@@ -178,14 +185,6 @@ app.post('/updateArticle', function (req, res) {
     }
 
     if (req.body.author != '' && req.body.author == updatedArticle.author) {
-        console.log('User ' + req.body.author + ' updated a new blog entry.');
-
-        if (req.body.content.category != updatedArticle.content.category) {
-            adjustArticleCounter(req.body.content.category, true);
-            adjustArticleCounter(updatedArticle.content.category, false);
-        }
-
-        var today = new Date();
 
         if (req.body.picture != null) {
             var imageFilePath = savePicture(req.body.picture, updatedArticle.id);
@@ -193,6 +192,7 @@ app.post('/updateArticle', function (req, res) {
             var imageFilePath = updatedArticle.picture;
         }
 
+        var today = new Date();
         var newArticle = {
             id: updatedArticle.id,
             author: updatedArticle.author,
@@ -202,14 +202,18 @@ app.post('/updateArticle', function (req, res) {
         };
 
         articles.push(newArticle);
-
         jsonFile.writeFileSync(articleFile, articles, indent);
 
-        res.sendStatus(200);
+        if (req.body.content.category != updatedArticle.content.category) {
+            adjustArticleCounter(req.body.content.category, true);
+            adjustArticleCounter(updatedArticle.content.category, false);
+        }
 
+        res.sendStatus(200);
+        console.log('User ' + req.body.author + ' updated a new blog entry.');
     } else {
-        console.log('Failure with author while updating article');
         res.sendStatus(403);
+        console.log('Failure with author while updating article');
     }
 });
 
@@ -232,6 +236,7 @@ app.post('/deleteArticle', function (req, res) {
     }
 });
 
+// --- functions ---
 function savePicture(pic, articleID) {
     var regPNG = /^data:image\/png;base64,/;
     var regJPG = /^data:image\/jpeg;base64,/;
@@ -245,7 +250,7 @@ function savePicture(pic, articleID) {
                 console.log(err);
             }
         });
-    } else if (pic.match(regJPG)){ //if it's a .jpg
+    } else if (pic.match(regJPG)) { //if it's a .jpg
         base64data = pic.replace(regJPG, "");
         imageFilePath = 'data/img/article-' + articleID + '.jpg';
         fs.writeFile('public/' + imageFilePath, base64data, 'base64', function (err) {

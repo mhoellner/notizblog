@@ -2,7 +2,7 @@
     <ul ng-controller="navbarCtrl" class="nav nav-pills nav-stacked nb-menu">
         <li id="loginNav" role="presentation" ng-class="{ active: isActive('/login') }"><a href="/login">Login</a></li>
         <li id="userNav" role="presentation" ng-class="{ active: isActive('/userSite') }">
-            <a href="/userSite">Meine Beitr&auml;ge</a>
+            <a href="/userSite">Meine Artikel</a>
         </li>
         <li ng-repeat="category in categories|orderBy:'title'" role="presentation"
             ng-class="{ active: isActive('/articlesOverview?category={{ category.id }}') }">
@@ -11,6 +11,6 @@
             </a>
         </li>
         <li role="presentation" ng-class="{ active: isActive('/search') }"><a href="/search">Suche</a></li>
-        <li role="presentation" ng-class="{ active: isActive('/impressum') }"><a href="/impressum">Impressum</a></li>
+        <li role="presentation" ng-class="{ active: isActive('/imprint') }"><a href="/imprint">Impressum</a></li>
     </ul>
 </div>

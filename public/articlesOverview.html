@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Beiträge | notizblog
+        Artikel | notizblog
     </title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
@@ -28,7 +28,7 @@
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {content: {category:actualCategory.id}} as filtered">
                             <nb:articleteaser article="article"></nb:articleteaser>
                         </div>
-                        <div ng-if="!filtered.length">Keine Beiträge vorhanden</div>
+                        <div ng-if="!filtered.length">Keine Artikel vorhanden</div>
                     </div>
                 </div>
             </div>

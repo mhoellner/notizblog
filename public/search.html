@@ -45,7 +45,7 @@
                         <div ng-repeat="article in articles | orderBy: '-date' | filter: {content:{title:searchTitle}} | filter: {author:searchAuthor} | filter: {content:{text:searchContent}} as filtered">
                             <nb:articleteaser article="article"></nb:articleteaser>
                         </div>
-                        <div ng-if="!filtered.length">Keine Beiträge gefunden</div>
+                        <div ng-if="!filtered.length">Keine Artikel gefunden</div>
                     </div>
                 </div>
             </div>

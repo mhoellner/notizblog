@@ -1,7 +1,7 @@
 <html ng-app="notizblogApp">
 <head>
     <title>
-        Neuer Beitrag | notizblog
+        Neuer Artikel | notizblog
     </title>
     <link rel="shortcut icon" type="image/png" href="img/favicon.png">
     <meta charset="UTF-8"/>
@@ -15,8 +15,8 @@
     <nb:header></nb:header>
     <ol class="breadcrumb">
         <li><a href="/">notizblog</a></li>
-        <li><a href="/userSite">Meine Beiträge</a></li>
-        <li class="active">Beitrag schreiben</li>
+        <li><a href="/userSite">Meine Artikel</a></li>
+        <li class="active">Artikel schreiben</li>
     </ol>
     <div class="row">
         <div class="col-md-3">
@@ -25,7 +25,7 @@
         <div class="col-md-9">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h4>Verfasse einen Blogeintrag</h4>
+                    <h4>Verfasse einen Artikel</h4>
                     <br/>
                     <form ng-submit="saveArticle()" ng-controller="articleFormCtrl">
                         <div class="form-group row">
@@ -63,8 +63,9 @@
                         <div class="form-group row">
                             <label for="input-copyright" class="col-md-2 col-form-label">Copyright</label>
                             <div class="col-md-10">
-                                <input type="checkbox" id="input-copyright" required> Der Text und ggf. das Bild sind mein geistiges Eigentum bzw. ich habe das Recht diesen zu verbreiten.
-                                Ich erteile <b>notizblog</b> das Recht, es zu verwenden.
+                                <input type="checkbox" id="input-copyright" required> Der Text und ggf. das Bild sind
+                                mein geistiges Eigentum bzw. ich habe das Recht die Inhalte zu verbreiten.
+                                Ich erteile <b>notizblog</b> das Recht, sie zu verwenden.
                             </div>
                         </div>
                         <br/>

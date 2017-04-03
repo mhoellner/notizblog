@@ -1,3 +1,4 @@
+// nav bar controller
 notizblogApp.controller('navbarCtrl', function ($scope, $cookies) {
     // show different things in menu if the user is logged in
     var user = $cookies.get('nbUser');
@@ -7,6 +8,7 @@ notizblogApp.controller('navbarCtrl', function ($scope, $cookies) {
         $('#userNav').hide();
     }
 
+    // mark active menu item
     $scope.isActive = function (string) {
         var activePath = window.location.pathname + window.location.search;
         if (string == activePath) {
@@ -15,6 +17,9 @@ notizblogApp.controller('navbarCtrl', function ($scope, $cookies) {
     }
 });
 
+// --- get data ---
+
+// user controllers
 notizblogApp.controller('usernameCtrl', function ($scope, $cookies) {
     $scope.username = $cookies.get('nbUser');
 });
@@ -29,10 +34,63 @@ notizblogApp.controller('userFromArticleCtrl', function ($scope, userService) {
         });
 });
 
+// article controllers
+notizblogApp.controller('allArticlesCtrl', function ($scope, articleService) {
+    articleService.allArticles(function (res) {
+        $scope.articles = res;
+    });
+});
+
+notizblogApp.controller('articleByIdCtrl', function ($scope, $q, articleService) {
+    var id = getParamFromUrl(/^id/);
+
+    if (id != null) {
+        // make promise to do something after the variable is initialized
+        var deferred = $q.defer();
+        $scope.articleInitialized = deferred.promise;
+
+        articleService.searchArticle(id, function (res) {
+            $scope.actualArticle = res;
+            // set promise here
+            deferred.resolve();
+        });
+    }
+});
+
+// category controllers
+notizblogApp.controller('allCategoriesCtrl', function ($scope, categoryService) {
+    categoryService.allCategories(function (res) {
+        $scope.categories = res;
+    });
+});
+
+notizblogApp.controller('categoryByIdCtrl', function ($scope, categoryService) {
+    var id = getParamFromUrl(/^category/);
+
+    if (id != null) {
+        categoryService.searchCategory(id, function (res) {
+            $scope.actualCategory = res;
+        });
+    }
+});
+
+notizblogApp.controller('categoryFromArticleCtrl', function ($scope, categoryService) {
+    $scope.articleInitialized
+        .then(function (resolved) {
+            var id = $scope.actualArticle.content.category;
+            categoryService.searchCategory(id, function (res) {
+                $scope.actualCategory = res;
+            });
+        });
+});
+
+// --- user management ---
+
 notizblogApp.controller('loginCtrl', function ($scope, userService) {
     $scope.login = function () {
         userService.login($scope.user, function (resData) {
             if (resData == "0") {
+                // login was successful
                 window.location = "/userSite";
             } else if (resData == "1") {
                 // wrong password
@@ -85,37 +143,7 @@ notizblogApp.controller('registerCtrl', function ($scope, userService) {
     };
 });
 
-notizblogApp.controller('allCategoriesCtrl', function ($scope, categoryService) {
-    categoryService.allCategories(function (res) {
-        $scope.categories = res;
-    });
-});
-
-notizblogApp.controller('categoryByIdCtrl', function ($scope, categoryService) {
-    var params = window.location.search.substring(1);
-    params = params.split('&');
-    for (var i in params) {
-        var string = params[i];
-        if (string.search(/^category/) != -1) {
-            var id = string.substring(string.indexOf("=") + 1);
-            break;
-        }
-    }
-
-    categoryService.searchCategory(id, function (res) {
-        $scope.actualCategory = res;
-    });
-});
-
-notizblogApp.controller('categoryFromArticleCtrl', function ($scope, categoryService) {
-    $scope.articleInitialized
-        .then(function (resolved) {
-            var id = $scope.actualArticle.content.category;
-            categoryService.searchCategory(id, function (res) {
-                $scope.actualCategory = res;
-            });
-        });
-});
+// --- article management (CUD of CRUD) ---
 
 notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies, $q) {
     if ($cookies.get('nbUser') != null) {
@@ -130,9 +158,8 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies, $q
                 var reader = new FileReader(); // HTML5 File Reader
                 reader.readAsDataURL(picture);
                 reader.onload = function (theFileData) {
-                    fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
+                    fileData = theFileData.target.result; // read result from FileReader
                     deferred.resolve();
-
                 }
             } else {
                 fileData = null;
@@ -160,12 +187,13 @@ notizblogApp.controller('articleFormCtrl', function ($scope, $http, $cookies, $q
                 });
         }
     } else {
-        // Der Nutzer ist nicht korrekt eingeloggt
+        // User must be logged in to write an article
         window.location = '/login';
     }
 });
 
 notizblogApp.controller('articleUpdateCtrl', function ($scope, $http, $cookies, $q) {
+    // sets content to edit
     $scope.articleInitialized
         .then(function (resolved) {
             if ($cookies.get('nbUser') != null && $cookies.get('nbUser') == $scope.actualArticle.author) {
@@ -175,13 +203,16 @@ notizblogApp.controller('articleUpdateCtrl', function ($scope, $http, $cookies, 
                     text: $scope.actualArticle.content.text
                 };
             } else {
-                // Der Nutzer ist nicht korrekt eingeloggt
+                // User must be logged in to update an article
                 window.location = '/login';
             }
         });
 
     $scope.updateArticle = function () {
+
         var fileData;
+
+        // promise to do something after the file data is read
         var deferred = $q.defer();
         $scope.fileDataReady = deferred.promise;
 
@@ -190,9 +221,8 @@ notizblogApp.controller('articleUpdateCtrl', function ($scope, $http, $cookies, 
             var reader = new FileReader(); // HTML5 File Reader
             reader.readAsDataURL(picture);
             reader.onload = function (theFileData) {
-                fileData = theFileData.target.result; // Ergebnis vom FileReader auslesen
+                fileData = theFileData.target.result; // read result from FileReader
                 deferred.resolve();
-
             }
         } else {
             fileData = null;
@@ -237,38 +267,27 @@ notizblogApp.controller('articleDeleteCtrl', ['$scope', '$http', function ($scop
                             .html('<hr><div class="alert alert-warning" role="alert">' +
                                 'Der Artikel <b>' + res.data[0].content.title + '</b> wurde erfolgreich gelöscht.' +
                                 '</div>');
-                    } else if (res.status == 401) {
+                    }
+                }, function (res) {
+                    if (res.status == 401) {
                         alert('Du hast nicht das Recht diesen Artikel zu löschen.');
                     }
                 });
-        } else {
-
         }
     };
 }]);
 
-notizblogApp.controller('allArticlesCtrl', function ($scope, articleService) {
-    articleService.allArticles(function (res) {
-        $scope.articles = res;
-    });
-});
-
-notizblogApp.controller('articleByIdCtrl', function ($scope, $q, articleService) {
+// --- functions ---
+function getParamFromUrl(paramRegex) {
+    var res = null;
     var params = window.location.search.substring(1);
     params = params.split('&');
     for (var i in params) {
         var string = params[i];
-        if (string.search(/^id/) != -1) {
-            var id = string.substring(string.indexOf("=") + 1);
+        if (string.search(paramRegex) != -1) {
+            res = string.substring(string.indexOf("=") + 1);
             break;
         }
     }
-
-    var deferred = $q.defer();
-    $scope.articleInitialized = deferred.promise;
-
-    articleService.searchArticle(id, function (res) {
-        $scope.actualArticle = res;
-        deferred.resolve();
-    });
-});
+    return res;
+}
