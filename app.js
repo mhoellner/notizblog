@@ -14,6 +14,7 @@ app.use(express.static('public'));
 var userFile = 'data/users.json';
 var articleFile = 'public/data/articles.json';
 var categoryFile = 'public/data/categories.json';
+var commentsFile = 'public/data/comments.json';
 var indent = {spaces: 2};
 
 // --- get methods ---
@@ -237,6 +238,38 @@ app.post('/deleteArticle', function (req, res) {
                 console.log(req.body.author + ' tried to delete article ' + req.body.articleID + ' but isn\'t the author.');
             }
         }
+    }
+});
+
+// --- comment management ---
+app.post('/addComment', function (req, res) {
+    if (req.body.comment != null && req.body.articleID != null) {
+        var comments = jsonFile.readFileSync(commentsFile);
+        var newID = generateId(comments);
+        var author = 'Anonymous';
+        if (req.body.author != null) {
+            author = req.body.author;
+        }
+        var ancestor = -1;
+        if (req.body.ancestor != null) {
+            ancestor = req.body.ancestor;
+        }
+        var today = new Date();
+        var newComment = {
+            "id": newID,
+            "article": req.body.articleID,
+            "ancestor": ancestor,
+            "text": req.body.comment,
+            "author": author,
+            "date": today
+        };
+        comments.push(newComment);
+        jsonFile.writeFileSync(commentsFile, comments, indent);
+        res.sendStatus(200);
+        console.log(author + ' commented on ' + req.body.articleID);
+    } else {
+        res.sendStatus(400); //Bad Request
+        console.log('Comment wasn\'t complete.');
     }
 });
 

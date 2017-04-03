@@ -47,6 +47,14 @@
                         <hr>
 
                         <!-- Kommentare -->
+                        <form class="row">
+                            <div class="form-group">
+                                <label for="comment" class="col-md-2">Kommentar</label>
+                                <div class="col-md-10">
+                                    <input id="comment" type="text" class="form-control">
+                                </div>
+                            </div>
+                        </form>
                         <div ng-controller="allCommentsCtrl">
                             <div ng-repeat="comment in comments | orderBy: '-date' | filter: {article:actualArticle.id} as filtered">
                                 <nb:comments comment="comment"></nb:comments>
