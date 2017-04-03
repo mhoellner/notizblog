@@ -286,8 +286,10 @@ notizblogApp.controller('articleDeleteCtrl', ['$scope', '$http', function ($scop
 
 // --- comment management ---
 
-notizblogApp.controller('commentFormCtrl', function ($scope, $cookies) {
+notizblogApp.controller('commentFormCtrl', function ($scope, $cookies, $http) {
     $scope.addComment = function () {
+
+        console.log('Test');
         var author = $cookies.get('nbUser');
 
         var jsonData = {

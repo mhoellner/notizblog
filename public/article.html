@@ -47,14 +47,14 @@
                         <hr>
 
                         <!-- Kommentare -->
-                        <form class="row" ng-controller="commentFormCtrl">
+                        <form class="row" ng-controller="commentFormCtrl" ng-submit="addComment()">
                             <div class="form-group">
                                 <label for="comment" class="col-md-2">Kommentar</label>
                                 <div class="col-md-7">
                                     <input id="comment" type="text" class="form-control" ng-model="commentText">
                                 </div>
                                 <div class="col-md-3">
-                                    <button ng-submit="addComment()" type="submit" class="btn btn-info">Kommentieren</button>
+                                    <button type="submit" class="btn btn-info">Kommentieren</button>
                                 </div>
                             </div>
                         </form>
