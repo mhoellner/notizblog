@@ -63,6 +63,10 @@ app.get('/updateArticle', function (req, res) {
     res.sendFile('public/updateArticle.html', {root: __dirname});
 });
 
+app.get('*', function (req, res) {
+    res.status(404).sendFile('public/404.html', {root: __dirname});
+});
+
 // --- post methods ---
 // user management
 app.post('/getUser', function (req, res) {
