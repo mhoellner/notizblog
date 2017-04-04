@@ -1,21 +1,34 @@
 <div class="row commentContainer">
     <div class="col-md-6">
-        {{actualComment.author}}
+        {{actualComment.author}} schrieb:
     </div>
     <div class="col-md-6 text-right">
         Datum: {{actualComment.date | date: 'dd.MM.yyyy'}}
     </div>
     <div class="col-md-12">
         <p>{{actualComment.text}}</p>
+        <a ng-click="subCommentForm()">Antworten</a>
+        <br>
+        <form id="comment-{{actualComment.id}}" class="row" ng-submit="addSubComment()" style="display: none">
+            <div class="form-group">
+                <label for="comment" class="col-md-2">Kommentar</label>
+                <div class="col-md-7">
+                    <input id="comment" type="text" class="form-control" ng-model="commentText">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" class="btn btn-info">Kommentieren</button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>
-<div ng-repeat="comment in allComments | orderBy: '-date' | filter: {ancestor: '!-1'} | filter: {ancestor:actualComment.id}">
+<div ng-repeat="comment in allComments | orderBy: 'date' | filter: {ancestor: '!-1'} | filter: {ancestor:actualComment.id}">
     <div class="row">
         <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
         <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
             <div class="row commentContainer">
                 <div class="col-md-6">
-                    {{comment.author}}
+                    {{comment.author}} schrieb:
                 </div>
                 <div class="col-md-6 text-right">
                     Datum: {{comment.date | date: 'dd.MM.yyyy'}}

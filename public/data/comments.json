@@ -18,9 +18,25 @@
   {
     "id": 2,
     "article": 1,
-    "ancestor": 0,
-    "text": "Comment0.1",
-    "author": "Elen Niedermeyer",
-    "date": "2017-04-04"
+    "ancestor": -1,
+    "text": "Noch so ein Kommentar",
+    "author": "Anonymous",
+    "date": "2017-04-04T19:11:28.226Z"
+  },
+  {
+    "id": 3,
+    "article": 1,
+    "ancestor": 2,
+    "text": "Kommentare kommentieren",
+    "author": "Anonymous",
+    "date": "2017-04-04T19:14:10.174Z"
+  },
+  {
+    "id": 4,
+    "article": 1,
+    "ancestor": 2,
+    "text": "Noch so ein doofer Kommentar",
+    "author": "Anonymous",
+    "date": "2017-04-04T19:22:44.254Z"
   }
 ]

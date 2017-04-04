@@ -35,6 +35,29 @@ notizblogApp.directive('nbComments', function factory() {
             allComments: '='
         },
         templateUrl: 'partials/comment.html',
-        restrict: 'EA'
+        restrict: 'EA',
+        controller: function ($scope, $http, $cookies) {
+            $scope.subCommentForm = function () {
+                $('#comment-' + $scope.actualComment.id).toggle();
+            };
+
+            $scope.addSubComment = function () {
+                var author = $cookies.get('nbUser');
+
+                var jsonData = {
+                    "author": author,
+                    "articleID": $scope.actualComment.article,
+                    "comment": $scope.commentText,
+                    "ancestor": $scope.actualComment.id
+                };
+
+                var location = window.location;
+
+                $http.post('/addComment', jsonData)
+                    .then(function (res) {
+                        window.location = location;
+                    })
+            }
+        }
     }
 });
