@@ -1,11 +1,29 @@
-<div class="commentContainer">
+<div class="row commentContainer">
+    <div class="col-md-6">
+        {{actualComment.author}}
+    </div>
+    <div class="col-md-6 text-right">
+        Datum: {{actualComment.date | date: 'dd.MM.yyyy'}}
+    </div>
+    <div class="col-md-12">
+        <p>{{actualComment.text}}</p>
+    </div>
+</div>
+<div ng-repeat="comment in allComments | orderBy: '-date' | filter: {ancestor: '!-1'} | filter: {ancestor:actualComment.id}">
     <div class="row">
-        <div class="col-md-6">
-            {{comment.author}}
-        </div>
-        <div class="col-md-6 text-right">
-            Datum: {{comment.date | date: 'dd.MM.yyyy'}}
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1"></div>
+        <div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+            <div class="row commentContainer">
+                <div class="col-md-6">
+                    {{comment.author}}
+                </div>
+                <div class="col-md-6 text-right">
+                    Datum: {{comment.date | date: 'dd.MM.yyyy'}}
+                </div>
+                <div class="col-md-12">
+                    <p>{{comment.text}}</p>
+                </div>
+            </div>
         </div>
     </div>
-    <p>{{comment.text}}</p>
 </div>

@@ -59,8 +59,8 @@
                             </div>
                         </form>
                         <div ng-controller="allCommentsCtrl">
-                            <div ng-repeat="comment in comments | orderBy: '-date' | filter: {article:actualArticle.id} as filtered">
-                                <nb:comments comment="comment"></nb:comments>
+                            <div ng-repeat="comment in comments | orderBy: '-date' | filter: {article:actualArticle.id} | filter: {ancestor:-1} as filtered">
+                                <nb:comments actual-comment="comment" all-comments="comments"></nb:comments>
                             </div>
                             <div ng-if="!filtered.length">Keine Kommentare</div>
                         </div>

@@ -3,7 +3,7 @@
     "id": 0,
     "article": 1,
     "ancestor": -1,
-    "text": "Hi",
+    "text": "Comment0",
     "author": "Elen Niedermeyer",
     "date": "2017-04-03"
   },
@@ -11,8 +11,16 @@
     "id": 1,
     "article": 1,
     "ancestor": -1,
-    "text": "Hi",
+    "text": "Comment1",
     "author": "Elen Niedermeyer",
     "date": "2017-04-03"
+  },
+  {
+    "id": 2,
+    "article": 1,
+    "ancestor": 0,
+    "text": "Comment0.1",
+    "author": "Elen Niedermeyer",
+    "date": "2017-04-04"
   }
 ]

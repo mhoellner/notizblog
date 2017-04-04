@@ -31,7 +31,8 @@ notizblogApp.directive('nbComments', function factory() {
     return {
         priority: 0,
         scope: {
-            comment: '='
+            actualComment: '=',
+            allComments: '='
         },
         templateUrl: 'partials/comment.html',
         restrict: 'EA'
