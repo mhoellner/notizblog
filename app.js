@@ -232,6 +232,7 @@ app.post('/deleteArticle', function (req, res) {
                 jsonFile.writeFileSync(articleFile, articles, indent);
                 res.status(200).send(removedArticle);
                 adjustArticleCounter(removedArticle[0].content.category, false);
+                deleteComments(removedArticle[0].id);
                 console.log('Deleted Article ' + req.body.articleID);
             } else {
                 res.sendStatus(401);
@@ -297,6 +298,18 @@ function savePicture(pic, articleID) {
         });
     }
     return imageFilePath;
+}
+
+function deleteComments(id) {
+    var comments = jsonFile.readFileSync(commentsFile);
+    for (c = comments.length - 1; c >= 0; c--) {
+        var comment = comments[c];
+        if (comment.article == id) {
+            comments.splice(c, 1);
+            console.log('Deleted comment ' + c);
+        }
+    }
+    jsonFile.writeFileSync(commentsFile, comments, indent);
 }
 
 function adjustArticleCounter(categoryID, increment) {
