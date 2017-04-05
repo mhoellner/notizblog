@@ -3,6 +3,8 @@ ein Projekt von Elen Niedermeyer ([@elen-niedermeyer](https://github.com/elen-ni
 
 Dies ist ein Blog für das Modul Webentwicklung.
 
+- NodeJS muss installiert sein.
+
 Zum Ausführen, die folgenden Befehle in dem Verzeichnis, wo das Projekt liegt, ausführen:
 
 `npm install`
