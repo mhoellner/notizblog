@@ -2,31 +2,31 @@
   {
     "id": 1,
     "title": "Arbeit und Studium",
-    "href": "/arbeit-und-studium",
     "amount": 1
   },
   {
     "id": 2,
     "title": "Kultur",
-    "href": "/kultur",
-    "amount": 1
+    "amount": 0
   },
   {
     "id": 3,
     "title": "Lifestyle",
-    "href": "/lifestyle",
-    "amount": 1
+    "amount": 0
   },
   {
     "id": 4,
     "title": "Politik",
-    "href": "/politik",
     "amount": 0
   },
   {
     "id": 5,
     "title": "Technik",
-    "href": "/technik",
+    "amount": 0
+  },
+  {
+    "id": 6,
+    "title": "Diverses",
     "amount": 0
   }
 ]

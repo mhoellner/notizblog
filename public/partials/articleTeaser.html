@@ -15,7 +15,9 @@
     <div class="col-md-3 col-lg-3">
         <img ng-src="{{article.picture}}" alt="" class="img-rounded img-responsive"/>
     </div>
-    <div class="col-md-9 col-lg-9">
-        {{article.content.text | limitTo:280 }}...
+    <div class="col-md-9 col-lg-9" ng-controller="htmlVariableCtrl"
+         ng-init="text=trustHtml(article.content.text | limitTo:280)"
+         ng-bind-html="trustHtml((article.content.text | limitTo:280) + '...')">
     </div>
+
 </div>

@@ -1,35 +1,13 @@
 [
   {
     "id": 0,
-    "author": "Milan Höllner",
+    "author": "Elen Niedermeyer",
     "content": {
-      "title": "TestArtikel",
-      "category": "3",
-      "text": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc."
-    },
-    "date": "2017-03-24T16:55:39.018Z",
-    "picture": "data/img/article-0.png"
-  },
-  {
-    "id": 1,
-    "author": "Milan Höllner",
-    "content": {
-      "title": "Zweiter Artikel",
-      "category": "2",
-      "text": "Bla bli blub <br>\nasdfacpsadf"
-    },
-    "date": "2017-03-24T17:10:38.494Z",
-    "picture": "data/img/article-1.png"
-  },
-  {
-    "id": 2,
-    "author": "Milan Höllner",
-    "content": {
-      "title": "Kategorie aktualisieren",
+      "title": "Kein erfolgreicher erster Tag",
       "category": "1",
-      "text": "Der Counter der Kategorie wird jetzt bei jedem neuen Artikel um eins erhöht.\nDie Funktion, die dafür geschrieben wurde, kann auch zum dekrementieren des Counters verwendet werden."
+      "text": "<p>Der erste Arbeitstag in einer neuen Abteilung läuft wohl nie glatt. Ich bin nun in der vierten Praxisphase meines dualen Studiums und es stand ein Abteilungswechsel an.<br>Am Morgen musste ich erstmal zusehen, dass ich jemanden fand, der für mich verantwortlich ist. Trotz der Nachfrage per Mail wurde mir nicht mitgeteilt, wann ich erscheinen soll. Immerhin war schon jemand da. Soweit so gut.<br>Viele andere Dinge fehlten jedoch. Vor allem mein <strong>Computer</strong>. Da ich keinen eigenen PC in dieser Abteilung habe, sollte mir die IT für die Dauer der Praxisphase ein Notebook leihen. Hat bisher nicht geklappt...<br>Um mich zu beschäftigen, wurden am Vormittag ein paar Vorträge organisiert, die auch recht interessant, aber dann im Gesamten doch langwierig waren.</p><br><p>Nach dem Mittagessen war mein Notebook immer noch nicht fertig, obwohl eine Kollegin dem ständig nachtelefonierte. Die IT-Abteilung wusste das ja nur schon seit eineinhalb Wochen, und dass ich heute komme, war ihnen auch bekannt.<br>Als die Langeweile wegen fehlender Aufgaben zu groß wurde, unternahm ich selbst einen Besuch bei der IT-Abteilung. Tatsächlich war das Notebook fast fertig. Aber eben nur fast. Nach einer Viertelstunde jedoch konnte ich wiederkommen, um es abzuholen. Na endlich!<br>In meinem Büro angekommen freute ich mich schon meine E-Mails von heute abzurufen. Allerdings konnte ich mich nicht an meinem neu erworbenen Notebook anmelden.<br>Da der Mitarbeiter der IT mich ja schon kannte, schnappte ich mein Notebook und ging damit zurück. Das Problem konnte zum Glück schnell behoben werden.<br>Da die Anmeldung nun klappte, <strong>könnte</strong> in den letzten zehn Minuten Arbeitszeit ja alles gut gehen. Tut es aber natürlich nicht.<br>Für die Anmeldung beim E-Mail-Programm braucht man eine Datei mit Nutzerkonfigurationen. Die habe ich auch. Auf meinem alten Rechner in der letzten Abteilung. Daran hatte ich vor der Theoriephase natürlich nicht gedacht.<br>Mit der Entscheidung heute eine Überstunde zu machen, machte ich mich also auf den Weg zu meinem letzten Arbeitsplatz. Der Rechner stand glücklicherweise noch an seinem Fleck. Ich konnte mir die benötigte Datei auf einem Stick speichern und damit zu meinem geliebten Notebook zurückgehen. Jaaaa, endlich! Nun konnte ich Mails abrufen. Was für ein Glück!</p><br><p>Das Notebook ist allerdings nicht das schnellste, daher dauert es immer eine Weile, bis ich mir wirklich etwas angucken kann.<br>Außerdem habe ich auf dem Notebook keine Administrationsrechte, was für Softwareentwicklung eine schlechte Voraussetzung ist. Die IT-Abteilung werde ich wohl in dieser Praxisphase noch öfter besuchen...<br>Tja, von einem erfolgreichen ersten Arbeitstag kann man hier wohl nicht sprechen, aber immerhin habe ich sehr nette Kollegen und morgen bekomme ich mein Projekt und kann's losgehen (hoffentlich).</p>"
     },
-    "date": "2017-03-26T10:04:45.585Z",
-    "picture": "data/img/article-2.png"
+    "date": "2017-04-05T17:25:50.661Z",
+    "picture": ""
   }
 ]

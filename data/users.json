@@ -1,14 +1,8 @@
 [
   {
-    "id": 1,
+    "id": 0,
     "name": "Elen Niedermeyer",
     "mail": "s_niedermeyer@stud.hwr-berlin.de",
     "password": "test"
-  },
-  {
-    "id": 2,
-    "name": "Milan Höllner",
-    "mail": "s_hoellner@stud.hwr-berlin.de",
-    "password": "test2"
   }
 ]

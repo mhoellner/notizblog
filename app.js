@@ -153,6 +153,17 @@ app.post('/newArticle', function (req, res) {
             var imageFilePath = '';
         }
 
+        if (req.body.content.category == null) {
+            req.body.content.category = 6;
+        }
+
+        var reg = /\n/;
+        var text = req.body.content.text;
+        while (text.match(reg)) {
+            text = text.replace(reg, "<br>");
+        }
+        req.body.content.text = text;
+
         var today = new Date();
         var newArticle = {
             id: newID,
