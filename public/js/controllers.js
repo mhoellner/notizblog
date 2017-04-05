@@ -308,6 +308,13 @@ notizblogApp.controller('commentFormCtrl', function ($scope, $cookies, $http) {
 
 });
 
+// makes a given variable to html text
+notizblogApp.controller('htmlVariableCtrl', function ($scope, $sce) {
+    $scope.trustHtml = function (html_code) {
+        return $sce.trustAsHtml(html_code);
+    };
+});
+
 // --- functions ---
 function getParamFromUrl(paramRegex) {
     var res = null;

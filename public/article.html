@@ -40,8 +40,8 @@
                         </div>
                         <hr>
                         <div class="row">
-                            <div class="col-md-12">
-                                {{actualArticle.content.text}}
+                            <div class="col-md-12" ng-controller="htmlVariableCtrl"
+                                 ng-bind-html="trustHtml(actualArticle.content.text)">
                             </div>
                         </div>
                         <hr>
