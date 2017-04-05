@@ -4,5 +4,11 @@
     "name": "Elen Niedermeyer",
     "mail": "s_niedermeyer@stud.hwr-berlin.de",
     "password": "test"
+  },
+  {
+    "id": 1,
+    "name": "Milan Höllner",
+    "mail": "s_hoellner@stud.hwr-berlin.de",
+    "password": "notizblog"
   }
 ]

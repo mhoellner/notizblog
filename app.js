@@ -208,6 +208,13 @@ app.post('/updateArticle', function (req, res) {
             var imageFilePath = updatedArticle.picture;
         }
 
+        var reg = /\n/;
+        var text = req.body.content.text;
+        while (text.match(reg)) {
+            text = text.replace(reg, "<br>");
+        }
+        req.body.content.text = text;
+
         var today = new Date();
         var newArticle = {
             id: updatedArticle.id,
